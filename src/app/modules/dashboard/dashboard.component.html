@@ -1,0 +1,50 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               position="end"
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+
+    <!--      Dashboard grid-settings start-->
+    <app-dashboard-grid-settings></app-dashboard-grid-settings>
+    <!--      Dashboard grid-settings end-->
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <!--    Dashboard content start-->
+    <div class="dashboard-content">
+
+      <!--      Dashboard top menu start-->
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>client</span>
+      </mat-toolbar>
+      <!--      Dashboard top menu end-->
+
+      <!--      Dashboard grid start-->
+      <app-dashboard-grid [options]="options"></app-dashboard-grid>
+      <!--      Dashboard grid end-->
+
+    </div>
+    <!--    Dashboard content end-->
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+
+
+

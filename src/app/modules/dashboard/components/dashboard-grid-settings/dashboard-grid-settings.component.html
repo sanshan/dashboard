@@ -1,0 +1,21 @@
+<div class="dashboard-grid-settings">
+  <form
+    class="dynamic-form"
+    [formGroup]="form">
+
+    <h2 class="dashboard-grid-settings-title">Настройки сетки</h2>
+
+    <div class="dashboard-grid-settings-group" *ngFor="let group of params$ | async" [formGroupName]="group.title">
+      <h3 class="dashboard-grid-settings-group-title">{{ group.title }}</h3>
+
+      <!--    Вывожу на компоненты с контролами динамически, основываясь на параметре controlType объекта param (используется декоратор appDynamicField)-->
+      <ng-container
+        *ngFor="let param of group.controls"
+        appDynamicField
+        [param]="param"
+        [form]="getGroup(group.title)">
+      </ng-container>
+
+    </div>
+  </form>
+</div>
