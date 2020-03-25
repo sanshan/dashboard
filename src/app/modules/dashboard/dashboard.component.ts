@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {shareReplay, map} from 'rxjs/operators';
+import {map, shareReplay} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {GridsterConfig} from 'angular-gridster2';
+import {GridsterConfig, GridsterItem} from 'angular-gridster2';
 import {DashboardGridOptionsService} from './services/grid/options/dashboard-grid-options.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   private gridOptions$: Observable<GridsterConfig>;
 
   options: GridsterConfig = {};
+  dashboard: GridsterItem[] = [];
 
   /**
    *  Стрим проверяющий размер экрана
@@ -58,7 +59,6 @@ export class DashboardComponent implements OnInit {
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged();
     }
-
   }
 
 }

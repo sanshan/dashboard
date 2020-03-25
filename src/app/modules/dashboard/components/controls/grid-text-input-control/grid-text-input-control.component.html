@@ -3,7 +3,7 @@
   [formGroup]="form">
 
   <mat-form-field class="example-full-width">
-    <mat-label>{{ param.labelText }}</mat-label>
+    <mat-label>{{ param.labelText | translate }}</mat-label>
     <input matInput type="text" [attr.placeholder]="param.labelText" [formControlName]="param.paramName"/>
   </mat-form-field>
 

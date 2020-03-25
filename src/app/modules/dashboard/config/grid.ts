@@ -5,9 +5,7 @@ import {GridSelectControlComponent} from '../components/controls/grid-select-con
 import {GridControlComponents, GridParamGroupInterface} from '../models/grid/params/param.interface';
 import {CompactType, DisplayGrid} from 'angular-gridster2';
 
-/**
- * Список доступных компонент для панели настроек грида.
- */
+/** Список доступных компонент для панели настроек грида. */
 export const GRID_CONTROL_COMPONENTS: GridControlComponents<any> = {
   Checkbox: GridCheckboxControlComponent,
   InputNumber: GridNumberInputControlComponent,
@@ -15,12 +13,77 @@ export const GRID_CONTROL_COMPONENTS: GridControlComponents<any> = {
   Select: GridSelectControlComponent
 };
 
-/**
- * Конфигурация панели с настройками грида
- */
+/** Конфигурация панели с настройками грида */
 export const GRID_SETTINGS: GridParamGroupInterface[] = [
+  // Добавление и изменение размеров блоков
   {
-    title: 'First group',
+    title: 'Resize&Add',
+    controls: [
+      {
+        paramName: 'enableEmptyCellClick',
+        controlType: 'Checkbox',
+        labelText: 'Click to add',
+        additionalText: 'enable empty cell click events',
+        value: false,
+        default: false
+      },
+      {
+        paramName: 'enableEmptyCellDrag',
+        controlType: 'Checkbox',
+        labelText: 'Drag to add',
+        additionalText: 'enable empty cell drag events',
+        value: false,
+        default: false
+      },
+      {
+        paramName: 'resizable.enabled',
+        controlType: 'Checkbox',
+        labelText: 'Resizable items',
+        additionalText: 'enable/disable resizable items',
+        value: false,
+        default: false
+      }
+    ]
+  },
+  {
+    title: 'Width&Height',
+    controls: [
+      {
+        paramName: 'maxCols',
+        controlType: 'InputNumber',
+        labelText: 'Max cols',
+        additionalText: 'Maximum amount of columns in the grid',
+        value: 12,
+        default: 12
+      },
+      {
+        paramName: 'maxRows',
+        controlType: 'InputNumber',
+        labelText: 'Max rows',
+        additionalText: 'Maximum amount of rows in the grid',
+        value: 12,
+        default: 12
+      },
+      {
+        paramName: 'minCols',
+        controlType: 'InputNumber',
+        labelText: 'Min cols',
+        additionalText: 'Minimum amount of columns in the grid',
+        value: 12,
+        default: 12
+      },
+      {
+        paramName: 'minRows',
+        controlType: 'InputNumber',
+        labelText: 'Min rows',
+        additionalText: 'Minimum amount of rows in the grid',
+        value: 12,
+        default: 12
+      }
+    ]
+  },
+  {
+    title: 'Drag&Drop',
     controls: [
       {
         paramName: 'draggable.enabled',
@@ -30,6 +93,19 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         value: false,
         default: false
       },
+      {
+        paramName: 'draggable.delayStart',
+        controlType: 'InputNumber',
+        labelText: 'Delay start ms',
+        additionalText: 'milliseconds to delay the start of drag, useful for touch interaction',
+        value: 0,
+        default: 0
+      }
+    ]
+  },
+  {
+    title: 'View',
+    controls: [
       {
         paramName: 'compactType',
         controlType: 'Select',
@@ -64,16 +140,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
     ]
   },
   {
-    title: 'Second group',
+    title: 'Scroll',
     controls: [
-      {
-        paramName: 'draggable.delayStart',
-        controlType: 'InputNumber',
-        labelText: 'Delay start ms',
-        additionalText: 'milliseconds to delay the start of drag, useful for touch interaction',
-        value: 0,
-        default: 0
-      },
       {
         paramName: 'disableScrollHorizontal',
         controlType: 'Checkbox',
@@ -89,14 +157,6 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         additionalText: 'enable/disable auto vertical scrolling when on edge of grid',
         value: 0,
         default: 0
-      },
-      {
-        paramName: 'enableEmptyCellDrag',
-        controlType: 'Checkbox',
-        labelText: 'Enable drag to add',
-        additionalText: 'enable empty cell drag events',
-        value: false,
-        default: false
       }
     ]
   }
