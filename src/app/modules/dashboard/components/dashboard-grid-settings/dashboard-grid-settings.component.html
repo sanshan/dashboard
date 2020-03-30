@@ -9,12 +9,12 @@
       <h3 class="dashboard-grid-settings-group-title">{{ group.title | translate }}</h3>
 
       <!--    Вывожу компоненты с контролами динамически, основываясь на параметре controlType объекта param (используется декоратор appDynamicField)-->
-      <ng-template
+      <ng-container
         *ngFor="let param of group.controls"
         appDynamicField
         [param]="param"
         [form]="getGroup(group.title)">
-      </ng-template>
+      </ng-container>
 
     </div>
   </form>

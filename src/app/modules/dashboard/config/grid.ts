@@ -15,36 +15,6 @@ export const GRID_CONTROL_COMPONENTS: GridControlComponents<any> = {
 
 /** Конфигурация панели с настройками грида */
 export const GRID_SETTINGS: GridParamGroupInterface[] = [
-  // Добавление и изменение размеров блоков
-  {
-    title: 'Resize&Add',
-    controls: [
-      {
-        paramName: 'enableEmptyCellClick',
-        controlType: 'Checkbox',
-        labelText: 'Click to add',
-        additionalText: 'enable empty cell click events',
-        value: false,
-        default: false
-      },
-      {
-        paramName: 'enableEmptyCellDrag',
-        controlType: 'Checkbox',
-        labelText: 'Drag to add',
-        additionalText: 'enable empty cell drag events',
-        value: false,
-        default: false
-      },
-      {
-        paramName: 'resizable.enabled',
-        controlType: 'Checkbox',
-        labelText: 'Resizable items',
-        additionalText: 'enable/disable resizable items',
-        value: false,
-        default: false
-      }
-    ]
-  },
   {
     title: 'Width&Height',
     controls: [
@@ -100,6 +70,35 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         additionalText: 'milliseconds to delay the start of drag, useful for touch interaction',
         value: 0,
         default: 0
+      }
+    ]
+  },
+  {
+    title: 'Resize&Add',
+    controls: [
+      {
+        paramName: 'enableEmptyCellClick',
+        controlType: 'Checkbox',
+        labelText: 'Click to add',
+        additionalText: 'enable empty cell click events',
+        value: false,
+        default: false
+      },
+      {
+        paramName: 'enableEmptyCellDrag',
+        controlType: 'Checkbox',
+        labelText: 'Drag to add',
+        additionalText: 'enable empty cell drag events',
+        value: false,
+        default: false
+      },
+      {
+        paramName: 'resizable.enabled',
+        controlType: 'Checkbox',
+        labelText: 'Resizable items',
+        additionalText: 'enable/disable resizable items',
+        value: false,
+        default: false
       }
     ]
   },
