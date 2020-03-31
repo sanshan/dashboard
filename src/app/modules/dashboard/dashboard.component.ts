@@ -1,38 +1,30 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {shareReplay, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {GridsterConfig, GridsterItem} from 'angular-gridster2';
-import {DashboardGridOptionsService} from './services/grid/options/dashboard-grid-options.service';
+import {Dashboard} from './models/dashboard/dashboard.interface';
+import {DashboardService} from './services/dashboard/dashboard.service';
+import {ID} from '../_shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
-  private gridOptions$: Observable<GridsterConfig>;
+  readonly dashboard$: Observable<Dashboard<any>>;
+  readonly isHandset$: Observable<boolean>;
 
-  options: GridsterConfig = {};
-  dashboard: GridsterItem[] = [];
-
-  /**
-   *  Стрим проверяющий размер экрана
-   */
-  public isHandset$: Observable<boolean> = this.observeHandset(Breakpoints.Handset);
+  currentId: ID = 1;
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
-    private dgOptionsService: DashboardGridOptionsService
+    private _d: DashboardService,
+    private _bp: BreakpointObserver
   ) {
-  }
-
-  ngOnInit(): void {
-    this.gridOptions$ = this.dgOptionsService.receiveOptions;
-
-    /** подписываемся на обновление опций грида и реагируем на изменения в них */
-    this.gridOptions$.subscribe(this.changedOptions);
+    this.dashboard$ = this._getDashboard$(this.currentId);
+    this.isHandset$ = this._getIsHandset$(Breakpoints.Handset);
   }
 
   /**
@@ -40,25 +32,16 @@ export class DashboardComponent implements OnInit {
    *
    * @param type Размер экрана
    */
-  private observeHandset(type): Observable<boolean> {
-    return this.breakpointObserver.observe(type)
+  private _getIsHandset$(type): Observable<boolean> {
+    return this._bp.observe(type)
       .pipe(
         map(result => result.matches),
         shareReplay()
       );
   }
 
-  /**
-   * Изменить настройки
-   *
-   * @param options Объект с настройками
-   */
-  private changedOptions = (options: GridsterConfig) => {
-    this.options = options;
-
-    if (this.options.api && this.options.api.optionsChanged) {
-      this.options.api.optionsChanged();
-    }
+  private _getDashboard$(dashboardId: ID): Observable<Dashboard<any>> {
+    return this._d.activate(dashboardId).dashboard$;
   }
 
 }

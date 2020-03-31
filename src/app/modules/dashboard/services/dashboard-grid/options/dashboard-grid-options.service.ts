@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {GridsterConfig} from 'angular-gridster2';
+import {GridsterConfig, GridsterItem} from 'angular-gridster2';
 import {FormGroup} from '@angular/forms';
 import {collectionReducer} from '../../../../_shared/helpers/functions';
+import {DashboardService} from '../../dashboard/dashboard.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +12,22 @@ export class DashboardGridOptionsService {
 
   private optionsSubject$: BehaviorSubject<GridsterConfig>;
   /** Стрим с опциями грида */
-  private readonly options$: Observable<GridsterConfig>;
+  readonly options$: Observable<GridsterConfig>;
 
-  constructor() {
+  constructor(
+    private _d: DashboardService
+  ) {
     this.optionsSubject$ = new BehaviorSubject<GridsterConfig>({});
-    this.options$ = this.optionsSubject$.asObservable();
-  }
-
-  /** Получить стрим с опцифми для грида */
-  get receiveOptions(): Observable<GridsterConfig> {
-    return this.options$;
+    this.options$ = this._initOptions$();
   }
 
   /** Обновить опции грида */
   updateOptionSubject(options: GridsterConfig) {
+    /** ТРЕБУЕТСЯ РЕФАКТОРИНГ */
+    options.emptyCellClickCallback = this.emptyCellClick.bind(this);
+    options.emptyCellDragCallback = this.emptyCellClick.bind(this);
+    /** ********************* */
+
     this.optionsSubject$.next(options);
   }
 
@@ -75,6 +78,20 @@ export class DashboardGridOptionsService {
     }
 
     return options as GridsterConfig;
+  }
+
+  private _initOptions$() {
+    return this.optionsSubject$.asObservable();
+  }
+
+  /**
+   * Обработка события клика по пустой ячейке
+   *
+   * @param event MouseEvent
+   * @param item GridsterItem
+   */
+  private emptyCellClick(event: MouseEvent, item: GridsterItem) {
+    this._d.addItem(item);
   }
 
 }

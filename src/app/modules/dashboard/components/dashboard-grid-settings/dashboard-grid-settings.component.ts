@@ -2,9 +2,9 @@ import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 
-import {DashboardGridSettingsService} from '../../services/grid/settings/dashboard-grid-settings.service';
+import {DashboardGridSettingsService} from '../../services/dashboard-grid/settings/dashboard-grid-settings.service';
 import {GridParamGroupInterface} from '../../models/grid/params/param.interface';
-import {DashboardGridOptionsService} from '../../services/grid/options/dashboard-grid-options.service';
+import {DashboardGridOptionsService} from '../../services/dashboard-grid/options/dashboard-grid-options.service';
 
 
 @Component({
@@ -15,31 +15,22 @@ import {DashboardGridOptionsService} from '../../services/grid/options/dashboard
 })
 export class DashboardGridSettingsComponent implements OnInit {
 
-  settingsForm: FormGroup;
+  readonly form: FormGroup;
 
   /** Стрим с параметрами формы */
-  params$: Observable<GridParamGroupInterface[]>;
-
-  /** Реактивная форма */
-  get form(): FormGroup {
-    return this.settingsForm;
-  }
+  readonly params$: Observable<GridParamGroupInterface[]>;
 
   constructor(
-    private dgs: DashboardGridSettingsService,
-    private dgo: DashboardGridOptionsService
+    private _dgs: DashboardGridSettingsService,
+    private _dgo: DashboardGridOptionsService
   ) {
+    this.params$ = this._getParams$();
+    this.form = this._getForm();
   }
 
   ngOnInit(): void {
-    /** Инициализируется реактивная форма с параметрами грида */
-    this.settingsForm = this.getForm();
-
-    /** Инициализируется стрим с конфигурацией формы */
-    this.params$ = this.getParams();
-
     /** Сделим за изменениями в форме */
-    this.settingsFormSubscribe();
+    this._settingsFormSubscribe();
   }
 
   /** Получить группу контролов из реактивной формы */
@@ -48,23 +39,23 @@ export class DashboardGridSettingsComponent implements OnInit {
   }
 
   /** Получить реактивную форму из сервиса */
-  private getForm() {
-    return this.dgs.getForm;
+  private _getForm() {
+    return this._dgs.form;
   }
 
   /** Получить трим с параметрами формы */
-  private getParams() {
-    return this.dgs.params$;
+  private _getParams$() {
+    return this._dgs.params$;
   }
 
   /** Подписываемся и следим за изменениями в форме */
-  private settingsFormSubscribe() {
-    this.settingsForm.valueChanges.subscribe(this.sendOptionsToGrid);
+  private _settingsFormSubscribe() {
+    this.form.valueChanges.subscribe(this.sendOptionsToGrid);
   }
 
   /** Отправка опций в сервис грида */
   sendOptionsToGrid = (groups: FormGroup) => {
-    this.dgo.updateOptionSubject(this.dgo.settingsToOptions(groups));
+    this._dgo.updateOptionSubject(this._dgo.settingsToOptions(groups));
   }
 
 }

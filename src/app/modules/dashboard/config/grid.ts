@@ -22,7 +22,7 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         paramName: 'maxCols',
         controlType: 'InputNumber',
         labelText: 'Max cols',
-        additionalText: 'Maximum amount of columns in the grid',
+        additionalText: 'Maximum amount of columns in the dashboard-grid',
         value: 12,
         default: 12
       },
@@ -30,7 +30,7 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         paramName: 'maxRows',
         controlType: 'InputNumber',
         labelText: 'Max rows',
-        additionalText: 'Maximum amount of rows in the grid',
+        additionalText: 'Maximum amount of rows in the dashboard-grid',
         value: 12,
         default: 12
       },
@@ -38,7 +38,7 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         paramName: 'minCols',
         controlType: 'InputNumber',
         labelText: 'Min cols',
-        additionalText: 'Minimum amount of columns in the grid',
+        additionalText: 'Minimum amount of columns in the dashboard-grid',
         value: 12,
         default: 12
       },
@@ -46,7 +46,7 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         paramName: 'minRows',
         controlType: 'InputNumber',
         labelText: 'Min rows',
-        additionalText: 'Minimum amount of rows in the grid',
+        additionalText: 'Minimum amount of rows in the dashboard-grid',
         value: 12,
         default: 12
       }
@@ -109,7 +109,7 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         paramName: 'compactType',
         controlType: 'Select',
         labelText: 'Compact Type',
-        additionalText: 'grid compact items',
+        additionalText: 'dashboard-grid compact items',
         value: CompactType.None,
         default: CompactType.None,
         options: [
@@ -126,8 +126,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
       {
         paramName: 'displayGrid',
         controlType: 'Select',
-        labelText: 'Display grid lines',
-        additionalText: 'display background grid of rows and columns',
+        labelText: 'Display dashboard-grid lines',
+        additionalText: 'display background dashboard-grid of rows and columns',
         value: DisplayGrid.OnDragAndResize,
         default: DisplayGrid.OnDragAndResize,
         options: [
@@ -145,7 +145,7 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         paramName: 'disableScrollHorizontal',
         controlType: 'Checkbox',
         labelText: 'Disable horizontal scroll',
-        additionalText: 'enable/disable auto horizontal scrolling when on edge of grid',
+        additionalText: 'enable/disable auto horizontal scrolling when on edge of dashboard-grid',
         value: 0,
         default: 0
       },
@@ -153,7 +153,7 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         paramName: 'disableScrollVertical',
         controlType: 'Checkbox',
         labelText: 'Disable vertical scroll',
-        additionalText: 'enable/disable auto vertical scrolling when on edge of grid',
+        additionalText: 'enable/disable auto vertical scrolling when on edge of dashboard-grid',
         value: 0,
         default: 0
       }

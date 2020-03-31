@@ -11,19 +11,12 @@ import {collectionReducer} from '../../../../_shared/helpers/functions';
 })
 export class DashboardGridSettingsFormService {
 
-  private readonly paramsForm: FormGroup;
+  readonly form: FormGroup;
 
   constructor(
-    private dgsFetchService: DashboardGridSettingsFetchService
+    private _dgsf: DashboardGridSettingsFetchService
   ) {
-    this.paramsForm = this.generateForm(this.receiveSettings);
-  }
-
-  /**
-   * Получить форму настройки грида
-   */
-  get form() {
-    return this.paramsForm;
+    this.form = this.generateForm(this.receiveSettings);
   }
 
   /**
@@ -76,13 +69,13 @@ export class DashboardGridSettingsFormService {
    * Получить данные о параметрах из сервиса
    */
   private get receiveSettings(): GridParamGroupInterface[] {
-    return this.dgsFetchService.currentSettings;
+    return this._dgsf.currentSettings;
   }
 
   /**
    * Получить стрим с параметрами из сервиса
    */
   get params$() {
-    return this.dgsFetchService.receiveSettings;
+    return this._dgsf.settings$;
   }
 }

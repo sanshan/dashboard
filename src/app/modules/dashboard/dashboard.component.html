@@ -6,9 +6,9 @@
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false">
 
-    <!--      Dashboard grid-settings start-->
+    <!--      Dashboard dashboard-grid-settings start-->
     <app-dashboard-grid-settings></app-dashboard-grid-settings>
-    <!--      Dashboard grid-settings end-->
+    <!--      Dashboard dashboard-grid-settings end-->
 
   </mat-sidenav>
 
@@ -31,9 +31,9 @@
       </mat-toolbar>
       <!--      Dashboard top menu end-->
 
-      <!--      Dashboard grid start-->
-      <app-dashboard-grid [options]="options"></app-dashboard-grid>
-      <!--      Dashboard grid end-->
+      <!--      Dashboard dashboard-grid start-->
+      <app-dashboard-grid [items]="(dashboard$ | async).items"></app-dashboard-grid>
+      <!--      Dashboard dashboard-grid end-->
 
     </div>
     <!--    Dashboard content end-->

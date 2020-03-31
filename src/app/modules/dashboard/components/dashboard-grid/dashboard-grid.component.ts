@@ -1,6 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
-import {GridsterConfig, GridsterItem, GridsterItemComponent} from 'angular-gridster2';
+import {GridsterConfig} from 'angular-gridster2';
+import {DashboardItem} from '../../models/dashboard/dashboard.interface';
+import {Observable} from 'rxjs';
+import {DashboardGridService} from '../../services/dashboard-grid/dashboard-grid.service';
 
 @Component({
   selector: 'app-dashboard-grid',
@@ -8,44 +11,44 @@ import {GridsterConfig, GridsterItem, GridsterItemComponent} from 'angular-grids
   styleUrls: ['./dashboard-grid.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DashboardGridComponent implements OnInit, OnChanges {
-  @Input() options: GridsterConfig;
-  dashboard: GridsterItem[];
-  itemToPush: GridsterItemComponent;
+export class DashboardGridComponent implements OnInit {
 
-  ngOnInit() {
-    this.dashboard = [
-      {cols: 3, rows: 3, y: 0, x: 0},
-      {cols: 3, rows: 4, y: 4, x: 2},
-      {cols: 6, rows: 6, y: 6, x: 6}
-    ];
+  @Input() items: DashboardItem<any>[];
+
+  readonly options$: Observable<GridsterConfig>;
+
+  constructor(
+    private _dg: DashboardGridService
+  ) {
+    this.options$ = this._getOptions$();
   }
 
-  ngOnChanges() {
-    /** ТРЕБУЕТСЯ РЕФАКТОРИНГ */
-    this.options.emptyCellClickCallback = this.emptyCellClick.bind(this);
-    this.options.emptyCellDragCallback = this.emptyCellClick.bind(this);
-    /** ********************* */
+  ngOnInit() {
+    /** подписываемся на обновление опций грида и реагируем на изменения в них */
+    this.options$.subscribe(this.optionsChanged);
   }
 
   removeItem($event, item) {
     $event.preventDefault();
     $event.stopPropagation();
-    this.dashboard.splice(this.dashboard.indexOf(item), 1);
-  }
 
-  initItem(item: GridsterItem, itemComponent: GridsterItemComponent) {
-    this.itemToPush = itemComponent;
+    this._dg.removeItem(item);
   }
 
   /**
-   * Обработка события клика по пустой ячейке
+   * Изменить настройки
    *
-   * @param event MouseEvent
-   * @param item GridsterItem
+   * @param options Объект с настройками
    */
-  emptyCellClick(event: MouseEvent, item: GridsterItem) {
-    this.dashboard.push(item);
+  private optionsChanged = (options: GridsterConfig) => {
+    if (options.api && options.api.optionsChanged) {
+
+      options.api.optionsChanged();
+    }
+  }
+
+  private _getOptions$(): Observable<GridsterConfig> {
+    return this._dg.getOptions$();
   }
 
 }

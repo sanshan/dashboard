@@ -11,33 +11,26 @@ export class DashboardGridSettingsService {
   /**
    * Рекативня форма для управления параметрами грида
    */
-  private readonly form: FormGroup;
+  readonly form: FormGroup;
 
   constructor(
-    private dgsFormService: DashboardGridSettingsFormService
+    private _dgsf: DashboardGridSettingsFormService
   ) {
-    this.form = this.initForm;
-  }
-
-  /**
-   * Предоставляю форму во внешний мир
-   */
-  get getForm() {
-    return this.form;
+    this.form = this._getForm();
   }
 
   /**
    * Предоставляю стрим с параметрами формы во внешний мир
    */
   get params$() {
-    return this.dgsFormService.params$;
+    return this._dgsf.params$;
   }
 
   /**
    * Инициализация формы
    */
-  private get initForm() {
-    return this.dgsFormService.form;
+  private _getForm() {
+    return this._dgsf.form;
   }
 
 }
