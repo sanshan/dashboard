@@ -16,6 +16,9 @@ import {GridNumberInputControlComponent} from './components/controls/grid-number
 import {GridSelectControlComponent} from './components/controls/grid-select-control/grid-select-control.component';
 import {GridCheckboxControlComponent} from './components/controls/grid-checkbox-control/grid-checkbox-control.component';
 import {DashboardRoutingModule} from './routing/dashboard-routing.module';
+import { Chart1Component } from './_mock/components/chart1/chart1.component';
+import { Chart2Component } from './_mock/components/chart2/chart2.component';
+import { Chart3Component } from './_mock/components/chart3/chart3.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import {DashboardRoutingModule} from './routing/dashboard-routing.module';
     GridTextInputControlComponent,
     GridNumberInputControlComponent,
     GridSelectControlComponent,
-    GridCheckboxControlComponent
+    GridCheckboxControlComponent,
+    Chart1Component,
+    Chart2Component,
+    Chart3Component
   ],
   exports: [
     DashboardComponent
