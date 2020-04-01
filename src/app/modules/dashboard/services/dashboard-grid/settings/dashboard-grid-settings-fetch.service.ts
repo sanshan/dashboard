@@ -11,13 +11,11 @@ import {GRID_SETTINGS} from '../../../config/grid';
 export class DashboardGridSettingsFetchService {
 
   private settingsSubject$: BehaviorSubject<GridParamGroupInterface[]>;
-
-  /** Стрим с настройками для панели конфигурации */
   readonly settings$: Observable<GridParamGroupInterface[]>;
 
   constructor() {
     this.settingsSubject$ = new BehaviorSubject<GridParamGroupInterface[]>([]);
-    this.settings$ = this.settingsSubject$.asObservable();
+    this.settings$ = this._initSettings$();
 
     this._updateSettingsSubject();
   }
@@ -27,14 +25,16 @@ export class DashboardGridSettingsFetchService {
     return this.settingsSubject$.value;
   }
 
-  /** Отправить объект с настройками для панели конфигурации в стрим */
   private _updateSettingsSubject() {
     this.settingsSubject$.next(this._getSettingsData());
   }
 
-  /** Получить объект с настройками для панели конфигурации из внешнего источника */
   private _getSettingsData() {
     return GRID_SETTINGS;
+  }
+
+  private _initSettings$() {
+    return this.settingsSubject$.asObservable();
   }
 
 }

@@ -16,10 +16,12 @@ export class DashboardGridService {
   ) {
   }
 
+  /** Получить стрим с опциями грида */
   getOptions$(): Observable<GridsterConfig> {
     return this._opt.options$;
   }
 
+  /** Удалить блок с грида */
   removeItem(item: DashboardItem<any>) {
     this._d.removeItem(item);
   }

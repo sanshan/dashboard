@@ -16,12 +16,15 @@ export class DashboardGridSettingsFormService {
   constructor(
     private _dgsf: DashboardGridSettingsFetchService
   ) {
-    this.form = this.generateForm(this.receiveSettings);
+    this.form = this.generateForm(this._receiveSettings());
   }
 
-  /**
-   * Создать из группы параметров группы для реактивной формы
-   */
+  /** Получить стрим с параметрами из сервиса */
+  get params$() {
+    return this._dgsf.settings$;
+  }
+
+  /** Создать из группы параметров группы для реактивной формы */
   private generateForm(gridParams: GridParamGroupInterface[]): FormGroup {
 
     type CustomFormControl = {
@@ -54,9 +57,7 @@ export class DashboardGridSettingsFormService {
       };
     };
 
-    /**
-     * Объект для создания реактивной формы
-     */
+    /** Объект для создания реактивной формы */
     const formObj = gridParams
       .map(mapGroup)
       .reduce(collectionReducer, {});
@@ -65,17 +66,9 @@ export class DashboardGridSettingsFormService {
   }
 
 
-  /**
-   * Получить данные о параметрах из сервиса
-   */
-  private get receiveSettings(): GridParamGroupInterface[] {
+  /** Получить данные о параметрах из сервиса */
+  private _receiveSettings(): GridParamGroupInterface[] {
     return this._dgsf.currentSettings;
   }
 
-  /**
-   * Получить стрим с параметрами из сервиса
-   */
-  get params$() {
-    return this._dgsf.settings$;
-  }
 }

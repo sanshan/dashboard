@@ -17,6 +17,7 @@ export class DashboardComponent {
   readonly dashboard$: Observable<Dashboard<any>>;
   readonly isHandset$: Observable<boolean>;
 
+  /** Дашборд поумолчанию */
   currentId: ID = 1;
 
   constructor(
@@ -40,6 +41,11 @@ export class DashboardComponent {
       );
   }
 
+  /**
+   * Получаю стрим с дашбордом
+   *
+   * @param dashboardId ID дашборда
+   */
   private _getDashboard$(dashboardId: ID): Observable<Dashboard<any>> {
     return this._d.activate(dashboardId).dashboard$;
   }

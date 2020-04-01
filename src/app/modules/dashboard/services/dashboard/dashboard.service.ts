@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
+
 import {Dashboard, DashboardItem, DashboardServiceInterface} from '../../models/dashboard/dashboard.interface';
 import {ID} from '../../../_shared/interfaces/interfaces';
 import {DashboardModel} from '../../models/dashboard/model/dashboard.model';
@@ -22,6 +23,11 @@ export class DashboardService implements DashboardServiceInterface {
     this.dashboard$ = this._initDashboard$();
   }
 
+  /**
+   * Активировать дашборд
+   *
+   * @param dashboardId Dashboard ID
+   */
   activate(dashboardId: ID): DashboardServiceInterface {
     const dashboard = this._m.getById(dashboardId);
     this._dashboardSubject.next(dashboard);
@@ -29,14 +35,16 @@ export class DashboardService implements DashboardServiceInterface {
     return this;
   }
 
+  /** Получить текущее значение DashboardModel из стрима */
   getDashboardSubjectValue(): Dashboard<any> {
     return this._dashboardSubject.value;
   }
 
-  private _initDashboard$(): Observable<DashboardModel> {
-    return this._dashboardSubject.asObservable();
-  }
-
+  /**
+   * Удалить блок с дашборда
+   *
+   * @param item DashboardItem<any>
+   */
   removeItem(item: DashboardItem<any>) {
     const oldDashboard = this.getDashboardSubjectValue();
     oldDashboard.items.splice(oldDashboard.items.indexOf(item), 1);
@@ -45,11 +53,20 @@ export class DashboardService implements DashboardServiceInterface {
     this._dashboardSubject.next(dashboard);
   }
 
+  /**
+   * Добавить блок на дашборд
+   *
+   * @param item GridsterItem
+   */
   addItem(item: GridsterItem) {
     const dashboard = merge(this.getDashboardSubjectValue(), {}, {}) as DashboardModel;
 
     dashboard.items.push(item);
     this._dashboardSubject.next(dashboard);
+  }
+
+  private _initDashboard$(): Observable<DashboardModel> {
+    return this._dashboardSubject.asObservable();
   }
 
 }

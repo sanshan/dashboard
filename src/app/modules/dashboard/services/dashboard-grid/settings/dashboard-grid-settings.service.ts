@@ -8,9 +8,6 @@ import {DashboardGridSettingsFormService} from './dashboard-grid-settings-form.s
 })
 export class DashboardGridSettingsService {
 
-  /**
-   * Рекативня форма для управления параметрами грида
-   */
   readonly form: FormGroup;
 
   constructor(
@@ -19,16 +16,11 @@ export class DashboardGridSettingsService {
     this.form = this._getForm();
   }
 
-  /**
-   * Предоставляю стрим с параметрами формы во внешний мир
-   */
+  /** Предоставляю стрим с параметрами формы во внешний мир */
   get params$() {
     return this._dgsf.params$;
   }
 
-  /**
-   * Инициализация формы
-   */
   private _getForm() {
     return this._dgsf.form;
   }

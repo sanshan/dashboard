@@ -11,7 +11,6 @@ import {DashboardService} from '../../dashboard/dashboard.service';
 export class DashboardGridOptionsService {
 
   private optionsSubject$: BehaviorSubject<GridsterConfig>;
-  /** Стрим с опциями грида */
   readonly options$: Observable<GridsterConfig>;
 
   constructor(
@@ -24,8 +23,8 @@ export class DashboardGridOptionsService {
   /** Обновить опции грида */
   updateOptionSubject(options: GridsterConfig) {
     /** ТРЕБУЕТСЯ РЕФАКТОРИНГ */
-    options.emptyCellClickCallback = this.emptyCellClick.bind(this);
-    options.emptyCellDragCallback = this.emptyCellClick.bind(this);
+    options.emptyCellClickCallback = this._emptyCellClick.bind(this);
+    options.emptyCellDragCallback = this._emptyCellClick.bind(this);
     /** ********************* */
 
     this.optionsSubject$.next(options);
@@ -84,13 +83,7 @@ export class DashboardGridOptionsService {
     return this.optionsSubject$.asObservable();
   }
 
-  /**
-   * Обработка события клика по пустой ячейке
-   *
-   * @param event MouseEvent
-   * @param item GridsterItem
-   */
-  private emptyCellClick(event: MouseEvent, item: GridsterItem) {
+  private _emptyCellClick(event: MouseEvent, item: GridsterItem) {
     this._d.addItem(item);
   }
 
