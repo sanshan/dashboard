@@ -1,5 +1,14 @@
 <gridster [options]="(options$ | async)">
-  <gridster-item [item]="item" *ngFor="let item of items">
+  <gridster-item
+    *ngFor="let item of items$ | async"
+    [item]="item"
+    (dragover)="setDropId(item._id)"
+  >
+    <ng-template
+      appDynamicDashboardItem
+      [componentRef]="getComponentRef(item._id)"
+    >
+    </ng-template>
     <div class="button-holder">
       <button mat-mini-fab (mousedown)="removeItem($event, item)"
               (touchstart)="removeItem($event, item)">

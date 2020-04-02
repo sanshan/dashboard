@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {GridsterConfig, GridsterItem} from 'angular-gridster2';
+import {GridsterConfig} from 'angular-gridster2';
 import {FormGroup} from '@angular/forms';
 import {collectionReducer} from '../../../../_shared/helpers/functions';
-import {DashboardService} from '../../dashboard/dashboard.service';
+import {DashboardGridService} from '../dashboard-grid.service';
+import {DashboardItem} from '../../../models/dashboard/dashboard.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class DashboardGridOptionsService {
   readonly options$: Observable<GridsterConfig>;
 
   constructor(
-    private _d: DashboardService
+    private _dg: DashboardGridService
   ) {
     this.optionsSubject$ = new BehaviorSubject<GridsterConfig>({});
     this.options$ = this._initOptions$();
@@ -83,8 +84,8 @@ export class DashboardGridOptionsService {
     return this.optionsSubject$.asObservable();
   }
 
-  private _emptyCellClick(event: MouseEvent, item: GridsterItem) {
-    this._d.addItem(item);
+  private _emptyCellClick(_: MouseEvent, item: DashboardItem<any>) {
+    this._dg.addItem(item);
   }
 
 }

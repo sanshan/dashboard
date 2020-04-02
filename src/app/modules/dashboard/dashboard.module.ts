@@ -16,9 +16,12 @@ import {GridNumberInputControlComponent} from './components/controls/grid-number
 import {GridSelectControlComponent} from './components/controls/grid-select-control/grid-select-control.component';
 import {GridCheckboxControlComponent} from './components/controls/grid-checkbox-control/grid-checkbox-control.component';
 import {DashboardRoutingModule} from './routing/dashboard-routing.module';
-import { Chart1Component } from './_mock/components/chart1/chart1.component';
-import { Chart2Component } from './_mock/components/chart2/chart2.component';
-import { Chart3Component } from './_mock/components/chart3/chart3.component';
+import {Chart1Component} from './_mock/components/chart1/chart1.component';
+import {Chart2Component} from './_mock/components/chart2/chart2.component';
+import {Chart3Component} from './_mock/components/chart3/chart3.component';
+import {DashboardToolbarComponent} from './components/dashboard-toolbar/dashboard-toolbar.component';
+import { DashboardToolbarItemComponent } from './components/dashboard-toolbar/dashboard-toolbar-item/dashboard-toolbar-item.component';
+import { DynamicDashboardItemDirective } from './_mock/components/dynamic-dashboard-item.directive';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { Chart3Component } from './_mock/components/chart3/chart3.component';
     GridCheckboxControlComponent,
     Chart1Component,
     Chart2Component,
-    Chart3Component
+    Chart3Component,
+    DashboardToolbarComponent,
+    DashboardToolbarItemComponent,
+    DynamicDashboardItemDirective
   ],
   exports: [
     DashboardComponent

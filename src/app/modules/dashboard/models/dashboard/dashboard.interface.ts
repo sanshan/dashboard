@@ -3,21 +3,21 @@ import {GridsterItem} from 'angular-gridster2';
 import {Observable} from 'rxjs';
 
 export interface DashboardItemContent<T> {
-  _id: ID;
-  data: T;
+  componentRef: T;
 }
 
 export interface DashboardItem<T> extends GridsterItem {
+  _id: ID;
   x: number;
   y: number;
   rows: number;
   cols: number;
-  content?: T;
+  content: DashboardItemContent<T>;
 }
 
 export interface Dashboard<T> {
   _id: ID;
-  items: DashboardItem<DashboardItemContent<T>>[];
+  items: DashboardItem<T>[];
 }
 
 export interface DashboardServiceInterface {
@@ -25,5 +25,10 @@ export interface DashboardServiceInterface {
 
   activate(id: ID): DashboardServiceInterface;
 
-  getDashboardSubjectValue(): Dashboard<any>;
+  updateDashboard(items: DashboardItem<any>[]): void;
+}
+
+export interface ComponentInterface {
+  id: ID;
+  componentRef: string;
 }

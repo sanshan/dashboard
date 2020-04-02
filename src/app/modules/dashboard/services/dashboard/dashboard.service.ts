@@ -5,7 +5,6 @@ import {Dashboard, DashboardItem, DashboardServiceInterface} from '../../models/
 import {ID} from '../../../_shared/interfaces/interfaces';
 import {DashboardModel} from '../../models/dashboard/model/dashboard.model';
 import {DashboardModelService} from '../../models/dashboard/model/dashboard-model.service';
-import {GridsterItem} from 'angular-gridster2';
 import {merge} from '../../../_shared/helpers/functions';
 
 @Injectable({
@@ -35,38 +34,28 @@ export class DashboardService implements DashboardServiceInterface {
     return this;
   }
 
-  /** Получить текущее значение DashboardModel из стрима */
-  getDashboardSubjectValue(): Dashboard<any> {
-    return this._dashboardSubject.value;
-  }
-
   /**
-   * Удалить блок с дашборда
+   * Обновить стрим
    *
-   * @param item DashboardItem<any>
+   * @param items DashboardItem<any>[]
    */
-  removeItem(item: DashboardItem<any>) {
-    const oldDashboard = this.getDashboardSubjectValue();
-    oldDashboard.items.splice(oldDashboard.items.indexOf(item), 1);
-    const dashboard = merge(this.getDashboardSubjectValue(), {}, {}) as DashboardModel;
+  updateDashboard(items: DashboardItem<any>[]) {
+    const dashboard = merge(
+      this._getDValue().items = items,
+      {},
+      {}
+    ) as DashboardModel;
 
-    this._dashboardSubject.next(dashboard);
-  }
-
-  /**
-   * Добавить блок на дашборд
-   *
-   * @param item GridsterItem
-   */
-  addItem(item: GridsterItem) {
-    const dashboard = merge(this.getDashboardSubjectValue(), {}, {}) as DashboardModel;
-
-    dashboard.items.push(item);
     this._dashboardSubject.next(dashboard);
   }
 
   private _initDashboard$(): Observable<DashboardModel> {
     return this._dashboardSubject.asObservable();
+  }
+
+  /** Получить текущее значение DashboardModel из стрима */
+  _getDValue(): Dashboard<any> {
+    return this._dashboardSubject.value;
   }
 
 }

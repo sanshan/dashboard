@@ -1,8 +1,9 @@
-import {Component, ChangeDetectionStrategy, NgZone, AfterViewInit, OnDestroy} from '@angular/core';
+import {Component, ChangeDetectionStrategy, NgZone, AfterViewInit, OnDestroy, Input} from '@angular/core';
 
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import {ChartComponentInterface, ChartInterface} from '../../../models/charts/chart.interface';
 
 am4core.useTheme(am4themes_animated);
 
@@ -12,8 +13,9 @@ am4core.useTheme(am4themes_animated);
   styleUrls: ['./chart1.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Chart1Component implements AfterViewInit, OnDestroy {
+export class Chart1Component implements AfterViewInit, OnDestroy, ChartComponentInterface {
 
+  @Input() item: ChartInterface;
   private chart: am4charts.XYChart;
 
   constructor(

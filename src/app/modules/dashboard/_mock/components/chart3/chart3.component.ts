@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {ChartComponentInterface, ChartInterface} from '../../../models/charts/chart.interface';
 
 @Component({
   selector: 'app-chart3',
@@ -6,9 +7,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./chart3.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Chart3Component implements OnInit {
+export class Chart3Component implements OnInit, ChartComponentInterface {
 
-  constructor() { }
+  @Input() item: ChartInterface;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

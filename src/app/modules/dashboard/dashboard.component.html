@@ -27,7 +27,9 @@
           *ngIf="isHandset$ | async">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <span>{{ 'Dashboard configuration' | translate }}</span>
+
+        <app-dashboard-toolbar></app-dashboard-toolbar>
+        
       </mat-toolbar>
       <!--      Dashboard top menu end-->
 
