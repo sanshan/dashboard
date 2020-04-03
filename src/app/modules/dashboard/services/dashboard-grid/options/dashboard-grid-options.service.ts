@@ -5,6 +5,8 @@ import {FormGroup} from '@angular/forms';
 import {collectionReducer} from '../../../../_shared/helpers/functions';
 import {DashboardGridService} from '../dashboard-grid.service';
 import {DashboardItem} from '../../../models/dashboard/dashboard.interface';
+import {DashboardGridSettingsFetchService} from '../settings/dashboard-grid-settings-fetch.service';
+import {GridParamGroupInterface} from '../../../models/grid/params/param.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +15,33 @@ export class DashboardGridOptionsService {
   private _optionsSubject$: BehaviorSubject<GridsterConfig>;
   readonly options$: Observable<GridsterConfig>;
 
+
   constructor(
-    private _dg: DashboardGridService
+    private _dg: DashboardGridService,
+    private _dgs: DashboardGridSettingsFetchService
   ) {
     this._optionsSubject$ = new BehaviorSubject<GridsterConfig>({});
     this.options$ = this._initOptions$();
+
+    this._settings$.subscribe((settings) => {
+      this.updateOptionSubject(this._gridBaseParamToOptions(settings));
+    });
+  }
+
+  private get _settings$(): Observable<GridParamGroupInterface[]> {
+    return this._dgs.settings$;
+  }
+
+  private _gridBaseParamToOptions(settings: GridParamGroupInterface[]): GridsterConfig {
+    return settings
+      .map((group) => {
+        return group.controls;
+      })
+      .reduce((accumulator, group) => {
+        return accumulator.concat(group);
+      }).map((param) => {
+        return {[param.paramName]: param.default};
+      }).reduce(collectionReducer) as GridsterConfig;
   }
 
   /** Обновить опции грида */
