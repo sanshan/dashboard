@@ -11,6 +11,7 @@ export interface GridBaseParamInterface {
   value: number | string | boolean;
   default: number | string | boolean;
   options?: { key: string, value: string }[];
+  access?: string[];
 }
 
 /**
