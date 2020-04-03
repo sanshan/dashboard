@@ -20,8 +20,10 @@ import {Chart1Component} from './_mock/components/chart1/chart1.component';
 import {Chart2Component} from './_mock/components/chart2/chart2.component';
 import {Chart3Component} from './_mock/components/chart3/chart3.component';
 import {DashboardToolbarComponent} from './components/dashboard-toolbar/dashboard-toolbar.component';
-import { DashboardToolbarItemComponent } from './components/dashboard-toolbar/dashboard-toolbar-item/dashboard-toolbar-item.component';
-import { DynamicDashboardItemDirective } from './_mock/components/dynamic-dashboard-item.directive';
+import {DashboardToolbarItemComponent} from './components/dashboard-toolbar/dashboard-toolbar-item/dashboard-toolbar-item.component';
+import {DynamicDashboardItemDirective} from './_mock/components/dynamic-dashboard-item.directive';
+import {UserSwitchComponent} from './_mock/user-switch/user-switch.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { DynamicDashboardItemDirective } from './_mock/components/dynamic-dashbo
     Chart3Component,
     DashboardToolbarComponent,
     DashboardToolbarItemComponent,
-    DynamicDashboardItemDirective
+    DynamicDashboardItemDirective,
+    UserSwitchComponent
   ],
   exports: [
     DashboardComponent
@@ -51,6 +54,7 @@ import { DynamicDashboardItemDirective } from './_mock/components/dynamic-dashbo
     GridsterModule,
     ReactiveFormsModule,
     DashboardRoutingModule,
+    MatButtonToggleModule,
   ]
 })
 export class DashboardModule {
