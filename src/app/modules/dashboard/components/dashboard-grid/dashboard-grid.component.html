@@ -2,7 +2,7 @@
   <gridster-item
     *ngFor="let item of items$ | async"
     [item]="item"
-    (dragover)="setDropId(item._id)"
+    (dragenter)="setDropId($event, item._id)"
   >
     <ng-template
       appDynamicDashboardItem

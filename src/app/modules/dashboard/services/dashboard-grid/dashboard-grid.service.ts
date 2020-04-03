@@ -14,14 +14,23 @@ export class DashboardGridService {
   private _itemsSubject: BehaviorSubject<DashboardItem<any>[]>;
   items$: Observable<DashboardItem<any>[]>;
 
-  private dropId: ID;
-  private components: ComponentInterface[] = [];
+  private _dropIdSubject: BehaviorSubject<ID>;
+  dropId$: Observable<ID>;
+
+  private _componentsSubject: BehaviorSubject<ComponentInterface[]>;
+  components$: Observable<ComponentInterface[]>;
 
   constructor(
     private _d: DashboardService
   ) {
     this._itemsSubject = new BehaviorSubject<DashboardItem<any>[]>([]);
-    this.items$ = this._initItems();
+    this.items$ = this._initItems$();
+
+    this._dropIdSubject = new BehaviorSubject<ID>(-1);
+    this.dropId$ = this._initDropId$();
+
+    this._componentsSubject = new BehaviorSubject<ComponentInterface[]>([]);
+    this.components$ = this._initComponents$();
   }
 
   /**
@@ -39,19 +48,8 @@ export class DashboardGridService {
    * @param item DashboardItem<any>
    */
   removeItem(item: DashboardItem<any>) {
-    const oldItems = this._getIValues();
-    const _item = this._getIValues().find(i => i._id === item._id);
-
-    const items = merge(
-      oldItems.splice(oldItems.indexOf(_item), 1),
-      {},
-      {}
-    ) as DashboardItem<any>[];
-
-    const comp = this.components.find(c => c.id.toString() === item._id.toString());
-    this.components.splice(this.components.indexOf(comp), 1);
-
-    this._d.updateDashboard(items);
+    this._removeFromItems(item);
+    this._removeFromComponents(item);
   }
 
   /**
@@ -60,17 +58,12 @@ export class DashboardGridService {
    * @param item GridsterItem
    */
   addItem(item: DashboardItem<any>) {
-    const oldItems = this._getIValues();
+    const items = this._itemsValue;
 
     item._id = Date.now().toString();
+    items.push(item);
 
-    const items = merge(
-      oldItems.push(item),
-      {},
-      {}
-    ) as DashboardItem<any>[];
-
-    this._d.updateDashboard(items);
+    this._updateDashboard(items);
   }
 
   /**
@@ -79,15 +72,17 @@ export class DashboardGridService {
    * @param chart ChartInterface
    */
   dropItem(chart: ChartInterface): void {
-    const {components} = this;
-    const comp: ComponentInterface = components.find(c => c.id.toString() === this.dropId.toString());
+    let components = this._componentsValue;
+    const comp: ComponentInterface = components.find(c => c.id.toString() === this._dropIdSubject.value.toString());
 
     const updateIdx: number = comp ? components.indexOf(comp) : components.length;
     const componentItem: ComponentInterface = {
-      id: this.dropId,
+      id: this._dropIdSubject.value,
       componentRef: chart.comp
     };
-    this.components = Object.assign([], components, {[updateIdx]: componentItem});
+    components = Object.assign([], components, {[updateIdx]: componentItem});
+
+    this._componentsSubject.next(components);
   }
 
   /**
@@ -96,7 +91,7 @@ export class DashboardGridService {
    * @param id ID
    */
   setDropId(id: ID): void {
-    this.dropId = id;
+    this._dropIdSubject.next(id);
   }
 
   /**
@@ -105,16 +100,48 @@ export class DashboardGridService {
    * @param id ID
    */
   getComponentRef(id: ID): string {
-    const comp = this.components.find(c => c.id.toString() === id.toString());
+    const comp = this._componentsValue.find(c => c.id.toString() === id.toString());
     return comp ? comp.componentRef : null;
   }
 
-  private _initItems(): Observable<DashboardItem<any>[]> {
+  private _initItems$(): Observable<DashboardItem<any>[]> {
     return this._itemsSubject.asObservable();
   }
 
-  private _getIValues(): DashboardItem<any>[] {
-    return this._itemsSubject.value;
+  private get _itemsValue(): DashboardItem<any>[] {
+    return merge(this._itemsSubject.value) as DashboardItem<any>[];
+  }
+
+  private _initDropId$(): Observable<ID> {
+    return this._dropIdSubject.asObservable();
+  }
+
+  private _initComponents$(): Observable<ComponentInterface[]> {
+    return this._componentsSubject.asObservable();
+  }
+
+  private get _componentsValue(): ComponentInterface[] {
+    return merge(this._componentsSubject.value) as ComponentInterface[];
+  }
+
+  private _updateDashboard(items: DashboardItem<any>[]): void {
+    this._d.updateDashboard(items);
+  }
+
+  private _removeFromItems(item: DashboardItem<any>): void {
+    const items = this._itemsValue;
+    const currentItem = this._itemsValue.find(i => i._id.toString() === item._id.toString());
+    items.splice(items.indexOf(currentItem), 1);
+
+    this._updateDashboard(items);
+  }
+
+  private _removeFromComponents(item: DashboardItem<any>): void {
+    const components = this._componentsValue;
+    const comp = this._componentsValue.find(c => c.id.toString() === item._id.toString());
+    components.splice(components.indexOf(comp), 1);
+
+    this._componentsSubject.next(components);
   }
 
 }

@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 
 import {GridsterConfig} from 'angular-gridster2';
-import {DashboardItem} from '../../models/dashboard/dashboard.interface';
+import {ComponentInterface, DashboardItem} from '../../models/dashboard/dashboard.interface';
 import {Observable} from 'rxjs';
 import {DashboardGridService} from '../../services/dashboard-grid/dashboard-grid.service';
 import {ID} from '../../../_shared/interfaces/interfaces';
@@ -17,18 +17,26 @@ export class DashboardGridComponent implements OnInit, OnChanges {
   @Input() items: DashboardItem<string>[];
   readonly items$: Observable<DashboardItem<string>[]>;
   readonly options$: Observable<GridsterConfig>;
+  readonly components$: Observable<ComponentInterface[]>;
 
   constructor(
     private _dg: DashboardGridService,
-    private _dgo: DashboardGridOptionsService
+    private _dgo: DashboardGridOptionsService,
+    private _change: ChangeDetectorRef
   ) {
     this.options$ = this._getOptions$();
     this.items$ = this._getItems$();
+    this.components$ = this._getComponents$();
   }
 
   ngOnInit() {
-    /** подписываемся на обновление опций грида и реагируем на изменения в них */
+    /** Подписываемся на обновление опций грида и реагируем на изменения в них */
     this.options$.subscribe(this.optionsChanged);
+
+    /** Подписываемся добавление контента и реагируем на это */
+    this.components$.subscribe((_) => {
+      this._change.markForCheck();
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -52,9 +60,10 @@ export class DashboardGridComponent implements OnInit, OnChanges {
   /**
    * Сохранить перетаскиваемые компонент в локальную переменную
    *
+   * @param $event Event
    * @param id ID
    */
-  setDropId(id: ID): void {
+  setDropId($event: Event, id: ID): void {
     this._dg.setDropId(id);
   }
 
@@ -77,7 +86,7 @@ export class DashboardGridComponent implements OnInit, OnChanges {
 
       options.api.optionsChanged();
     }
-  }
+  };
 
   private _getOptions$(): Observable<GridsterConfig> {
     return this._dgo.options$;
@@ -85,6 +94,10 @@ export class DashboardGridComponent implements OnInit, OnChanges {
 
   private _getItems$(): Observable<DashboardItem<string>[]> {
     return this._dg.items$;
+  }
+
+  private _getComponents$(): Observable<ComponentInterface[]> {
+    return this._dg.components$;
   }
 
 }

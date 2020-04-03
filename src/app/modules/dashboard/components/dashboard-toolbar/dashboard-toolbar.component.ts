@@ -35,5 +35,4 @@ export class DashboardToolbarComponent implements DashboardToolbarInterface<Char
     return this._dt.items$;
   }
 
-
 }

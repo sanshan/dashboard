@@ -3,7 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 
 import {DashboardGridSettingsFetchService} from './dashboard-grid-settings-fetch.service';
 import {GridBaseParamInterface, GridParamGroupInterface} from '../../../models/grid/params/param.interface';
-import {collectionReducer} from '../../../../_shared/helpers/functions';
+import {collectionReducer, merge} from '../../../../_shared/helpers/functions';
 
 
 @Injectable({
@@ -22,6 +22,10 @@ export class DashboardGridSettingsFormService {
   /** Получить стрим с параметрами из сервиса */
   get params$() {
     return this._dgsf.settings$;
+  }
+
+  get formValue() {
+    return merge(this.form.value) as FormGroup;
   }
 
   /** Создать из группы параметров группы для реактивной формы */
@@ -65,10 +69,9 @@ export class DashboardGridSettingsFormService {
     return new FormGroup(formObj);
   }
 
-
   /** Получить данные о параметрах из сервиса */
   private _receiveSettings(): GridParamGroupInterface[] {
-    return this._dgsf.currentSettings;
+    return this._dgsf._settingsValue;
   }
 
 }

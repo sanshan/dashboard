@@ -10,14 +10,13 @@ import {DashboardItem} from '../../../models/dashboard/dashboard.interface';
   providedIn: 'root'
 })
 export class DashboardGridOptionsService {
-
-  private optionsSubject$: BehaviorSubject<GridsterConfig>;
+  private _optionsSubject$: BehaviorSubject<GridsterConfig>;
   readonly options$: Observable<GridsterConfig>;
 
   constructor(
     private _dg: DashboardGridService
   ) {
-    this.optionsSubject$ = new BehaviorSubject<GridsterConfig>({});
+    this._optionsSubject$ = new BehaviorSubject<GridsterConfig>({});
     this.options$ = this._initOptions$();
   }
 
@@ -28,7 +27,7 @@ export class DashboardGridOptionsService {
     options.emptyCellDragCallback = this._emptyCellClick.bind(this);
     /** ********************* */
 
-    this.optionsSubject$.next(options);
+    this._optionsSubject$.next(options);
   }
 
   /**
@@ -81,7 +80,7 @@ export class DashboardGridOptionsService {
   }
 
   private _initOptions$() {
-    return this.optionsSubject$.asObservable();
+    return this._optionsSubject$.asObservable();
   }
 
   private _emptyCellClick(_: MouseEvent, item: DashboardItem<any>) {

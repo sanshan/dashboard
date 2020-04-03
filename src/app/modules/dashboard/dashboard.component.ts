@@ -12,7 +12,7 @@ import {ID} from '../_shared/interfaces/interfaces';
   styleUrls: ['./dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DashboardComponent {
+export class DashboardComponent  {
 
   readonly dashboard$: Observable<Dashboard<any>>;
   readonly isHandset$: Observable<boolean>;

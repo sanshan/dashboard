@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 
 import {GridParamGroupInterface} from '../../../models/grid/params/param.interface';
 import {GRID_SETTINGS} from '../../../config/grid';
+import {merge} from '../../../../_shared/helpers/functions';
 
 
 @Injectable({
@@ -10,23 +11,23 @@ import {GRID_SETTINGS} from '../../../config/grid';
 })
 export class DashboardGridSettingsFetchService {
 
-  private settingsSubject$: BehaviorSubject<GridParamGroupInterface[]>;
+  private _settingsSubject$: BehaviorSubject<GridParamGroupInterface[]>;
   readonly settings$: Observable<GridParamGroupInterface[]>;
 
   constructor() {
-    this.settingsSubject$ = new BehaviorSubject<GridParamGroupInterface[]>([]);
+    this._settingsSubject$ = new BehaviorSubject<GridParamGroupInterface[]>([]);
     this.settings$ = this._initSettings$();
 
     this._updateSettingsSubject();
   }
 
   /** Получить текущее значение из стрима с настройками */
-  get currentSettings(): GridParamGroupInterface[] {
-    return this.settingsSubject$.value;
+  get _settingsValue(): GridParamGroupInterface[] {
+    return merge(this._settingsSubject$.value) as GridParamGroupInterface[];
   }
 
   private _updateSettingsSubject() {
-    this.settingsSubject$.next(this._getSettingsData());
+    this._settingsSubject$.next(this._getSettingsData());
   }
 
   private _getSettingsData() {
@@ -34,7 +35,7 @@ export class DashboardGridSettingsFetchService {
   }
 
   private _initSettings$() {
-    return this.settingsSubject$.asObservable();
+    return this._settingsSubject$.asObservable();
   }
 
 }

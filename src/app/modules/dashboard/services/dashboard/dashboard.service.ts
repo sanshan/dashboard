@@ -3,7 +3,6 @@ import {BehaviorSubject, Observable} from 'rxjs';
 
 import {Dashboard, DashboardItem, DashboardServiceInterface} from '../../models/dashboard/dashboard.interface';
 import {ID} from '../../../_shared/interfaces/interfaces';
-import {DashboardModel} from '../../models/dashboard/model/dashboard.model';
 import {DashboardModelService} from '../../models/dashboard/model/dashboard-model.service';
 import {merge} from '../../../_shared/helpers/functions';
 
@@ -12,13 +11,13 @@ import {merge} from '../../../_shared/helpers/functions';
 })
 export class DashboardService implements DashboardServiceInterface {
 
-  private _dashboardSubject: BehaviorSubject<DashboardModel>;
-  readonly dashboard$: Observable<DashboardModel>;
+  private _dashboardSubject: BehaviorSubject<Dashboard<any>>;
+  readonly dashboard$: Observable<Dashboard<any>>;
 
   constructor(
     private _m: DashboardModelService
   ) {
-    this._dashboardSubject = new BehaviorSubject<DashboardModel>(undefined);
+    this._dashboardSubject = new BehaviorSubject<Dashboard<any>>(undefined);
     this.dashboard$ = this._initDashboard$();
   }
 
@@ -28,7 +27,7 @@ export class DashboardService implements DashboardServiceInterface {
    * @param dashboardId Dashboard ID
    */
   activate(dashboardId: ID): DashboardServiceInterface {
-    const dashboard = this._m.getById(dashboardId);
+    const dashboard = this._getById(dashboardId);
     this._dashboardSubject.next(dashboard);
 
     return this;
@@ -40,22 +39,23 @@ export class DashboardService implements DashboardServiceInterface {
    * @param items DashboardItem<any>[]
    */
   updateDashboard(items: DashboardItem<any>[]) {
-    const dashboard = merge(
-      this._getDValue().items = items,
-      {},
-      {}
-    ) as DashboardModel;
+    const dashboard = this._dashboardValue;
+    dashboard.items = items;
 
     this._dashboardSubject.next(dashboard);
   }
 
-  private _initDashboard$(): Observable<DashboardModel> {
+  private _initDashboard$(): Observable<Dashboard<any>> {
     return this._dashboardSubject.asObservable();
   }
 
-  /** Получить текущее значение DashboardModel из стрима */
-  _getDValue(): Dashboard<any> {
-    return this._dashboardSubject.value;
+  /** Получить текущее значение Dashboard<any> из стрима */
+  private get _dashboardValue(): Dashboard<any> {
+    return merge(this._dashboardSubject.value) as Dashboard<any>;
+  }
+
+  private _getById(dashboardId) {
+    return this._m.getById(dashboardId);
   }
 
 }
