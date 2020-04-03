@@ -9,7 +9,7 @@ export type Role = 'admin' | 'user';
 export class UserService {
 
   private _userSubject$: BehaviorSubject<Role>;
-  user$: Observable<string>;
+  user$: Observable<Role>;
 
   constructor() {
     this._userSubject$ = new BehaviorSubject<Role>('user');
@@ -17,8 +17,6 @@ export class UserService {
   }
 
   updateUserSubject(role: Role) {
-    console.log(role);
-
     this._userSubject$.next(role);
   }
 }
