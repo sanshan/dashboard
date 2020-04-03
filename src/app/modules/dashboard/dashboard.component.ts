@@ -6,13 +6,14 @@ import {Dashboard} from './models/dashboard/dashboard.interface';
 import {DashboardService} from './services/dashboard/dashboard.service';
 import {ID} from '../_shared/interfaces/interfaces';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DashboardComponent  {
+export class DashboardComponent {
 
   readonly dashboard$: Observable<Dashboard<any>>;
   readonly isHandset$: Observable<boolean>;
@@ -22,7 +23,7 @@ export class DashboardComponent  {
 
   constructor(
     private _d: DashboardService,
-    private _bp: BreakpointObserver
+    private _bp: BreakpointObserver,
   ) {
     this.dashboard$ = this._getDashboard$(this.currentId);
     this.isHandset$ = this._getIsHandset$(Breakpoints.Handset);

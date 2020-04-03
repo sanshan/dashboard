@@ -15,6 +15,7 @@ export class DynamicFieldDirective implements OnInit {
   @Input() param: GridBaseParamInterface;
   /** Группа реактивной формы в которой находится контрол */
   @Input() form: FormGroup;
+
   /** Ссылка на компонент с контролом */
   component: ComponentRef<ControlInterface>;
 

@@ -4,6 +4,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {DashboardGridSettingsFetchService} from './dashboard-grid-settings-fetch.service';
 import {GridBaseParamInterface, GridParamGroupInterface} from '../../../models/grid/params/param.interface';
 import {collectionReducer, merge} from '../../../../_shared/helpers/functions';
+import {Observable} from 'rxjs';
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class DashboardGridSettingsFormService {
   }
 
   /** Получить стрим с параметрами из сервиса */
-  get params$() {
+  get params$(): Observable<GridParamGroupInterface[]> {
     return this._dgsf.settings$;
   }
 
