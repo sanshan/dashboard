@@ -24,7 +24,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Max cols',
         additionalText: 'Maximum amount of columns in the dashboard-grid',
         value: 12,
-        default: 12
+        default: 12,
+        access: ['admin', 'user']
       },
       {
         paramName: 'maxRows',
@@ -32,7 +33,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Max rows',
         additionalText: 'Maximum amount of rows in the dashboard-grid',
         value: 12,
-        default: 12
+        default: 12,
+        access: ['admin', 'user']
       },
       {
         paramName: 'minCols',
@@ -40,7 +42,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Min cols',
         additionalText: 'Minimum amount of columns in the dashboard-grid',
         value: 12,
-        default: 12
+        default: 12,
+        access: ['admin', 'user']
       },
       {
         paramName: 'minRows',
@@ -48,7 +51,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Min rows',
         additionalText: 'Minimum amount of rows in the dashboard-grid',
         value: 12,
-        default: 12
+        default: 12,
+        access: ['admin', 'user']
       },
       {
         paramName: 'maxItemCols',
@@ -56,7 +60,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Max item cols',
         additionalText: 'maximum item number of cols',
         value: 12,
-        default: 12
+        default: 12,
+        access: ['admin']
       },
       {
         paramName: 'minItemCols',
@@ -64,7 +69,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Min item cols',
         additionalText: 'minimum item number of cols',
         value: 1,
-        default: 1
+        default: 1,
+        access: ['admin']
       },
       {
         paramName: 'maxItemRows',
@@ -72,7 +78,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Max item rows',
         additionalText: 'maximum item number of rows',
         value: 12,
-        default: 12
+        default: 12,
+        access: ['admin']
       },
       {
         paramName: 'minItemRows',
@@ -80,7 +87,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Min item rows',
         additionalText: 'minimum item number of rows',
         value: 1,
-        default: 1
+        default: 1,
+        access: ['admin']
       },
       {
         paramName: 'minItemArea',
@@ -88,7 +96,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Min item area',
         additionalText: 'minimum item area: cols * rows',
         value: 1,
-        default: 1
+        default: 1,
+        access: ['admin']
       },
       {
         paramName: 'maxItemArea',
@@ -96,7 +105,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Max item area',
         additionalText: 'maximum item area: cols * rows',
         value: 144,
-        default: 144
+        default: 144,
+        access: ['admin', 'user']
       }
     ]
   },
@@ -108,8 +118,9 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         controlType: 'Checkbox',
         labelText: 'Drag Items',
         additionalText: 'enable/disable draggable items',
-        value: false,
-        default: false
+        value: true,
+        default: true,
+        access: ['admin']
       },
       {
         paramName: 'draggable.delayStart',
@@ -117,15 +128,17 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Delay start ms',
         additionalText: 'milliseconds to delay the start of drag, useful for touch interaction',
         value: 0,
-        default: 0
+        default: 0,
+        access: ['admin']
       },
       {
         paramName: 'draggable.dropOverItems',
         controlType: 'Checkbox',
         labelText: 'Drop over another',
         additionalText: 'enable items drop over another, will work if swap and push is disabled',
-        value: false,
-        default: false
+        value: true,
+        default: true,
+        access: ['admin']
       },
       {
         paramName: 'swap',
@@ -133,7 +146,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Swap items',
         additionalText: 'allow items to switch position if drop on top of another',
         value: true,
-        default: true
+        default: true,
+        access: ['admin']
       }
     ]
   },
@@ -145,8 +159,9 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         controlType: 'Checkbox',
         labelText: 'Resizable items',
         additionalText: 'enable/disable resizable items',
-        value: false,
-        default: false
+        value: true,
+        default: true,
+        access: ['admin']
       },
       {
         paramName: 'resizable.delayStart',
@@ -154,7 +169,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Delay start ms',
         additionalText: 'milliseconds to delay the start of resize, useful for touch interaction',
         value: 0,
-        default: 0
+        default: 0,
+        access: ['admin']
       },
       {
         paramName: 'enableEmptyCellClick',
@@ -162,39 +178,44 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Click to add',
         additionalText: 'enable empty cell click events',
         value: false,
-        default: false
+        default: false,
+        access: ['admin']
       },
       {
         paramName: 'enableEmptyCellDrag',
         controlType: 'Checkbox',
         labelText: 'Drag to add',
         additionalText: 'enable empty cell drag events',
-        value: false,
-        default: false
+        value: true,
+        default: true,
+        access: ['admin']
       },
       {
         paramName: 'enableEmptyCellDrop',
         controlType: 'Checkbox',
         labelText: 'Enable drop to add',
         additionalText: 'Enable drop to add',
-        value: false,
-        default: false
+        value: true,
+        default: true,
+        access: ['admin']
       },
       {
         paramName: 'enableOccupiedCellDrop',
         controlType: 'Checkbox',
         labelText: ' Enable drop on occupied cell',
         additionalText: 'enable occupied cell drop events',
-        value: false,
-        default: false
+        value: true,
+        default: true,
+        access: ['admin']
       },
       {
         paramName: 'enableEmptyCellContextMenu',
         controlType: 'Checkbox',
         labelText: 'Enable right click to add',
         additionalText: 'enable empty cell context menu (right click) events',
-        value: false,
-        default: false
+        value: true,
+        default: true,
+        access: ['admin']
       },
       {
         paramName: 'emptyCellDragMaxCols',
@@ -202,7 +223,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Drag max colls',
         additionalText: 'limit empty cell drag max rows',
         value: 50,
-        default: 50
+        default: 50,
+        access: ['admin']
       },
       {
         paramName: 'emptyCellDragMaxRows',
@@ -210,7 +232,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Drag max rows',
         additionalText: 'limit empty cell drag max rows',
         value: 50,
-        default: 50
+        default: 50,
+        access: ['admin']
       }
     ]
   },
@@ -231,7 +254,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
           {key: GridType.Fixed, value: GridType.Fixed},
           {key: GridType.VerticalFixed, value: GridType.VerticalFixed},
           {key: GridType.HorizontalFixed, value: GridType.HorizontalFixed},
-        ]
+        ],
+        access: ['admin', 'user']
       },
       {
         paramName: 'fixedColWidth',
@@ -239,7 +263,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Fixed col width(px)',
         additionalText: 'fixed col width for gridType: fixed',
         value: 200,
-        default: 200
+        default: 200,
+        access: ['admin', 'user']
       },
       {
         paramName: 'fixedRowHeight',
@@ -247,7 +272,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Fixed row height(px)',
         additionalText: 'fixed row height for gridType: fixed',
         value: 100,
-        default: 100
+        default: 100,
+        access: ['admin', 'user']
       },
       {
         paramName: 'keepFixedWidthInMobile',
@@ -255,7 +281,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Keep fixed width in mobile',
         additionalText: 'keep the width from fixed gridType in mobile layout',
         value: false,
-        default: false
+        default: false,
+        access: ['admin']
       },
       {
         paramName: 'keepFixedHeightInMobile',
@@ -263,7 +290,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Keep fixed height in mobile',
         additionalText: 'keep the height from fixed gridType in mobile layout',
         value: false,
-        default: false
+        default: false,
+        access: ['admin']
       },
       {
         paramName: 'mobileBreakpoint',
@@ -271,7 +299,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Mobile breakpoint',
         additionalText: 'if the screen is not wider that this, remove the grid layout and stack the items',
         value: 640,
-        default: 640
+        default: 640,
+        access: ['admin']
       }
     ]
   },
@@ -294,7 +323,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
           {key: CompactType.CompactRightAndUp, value: CompactType.CompactRightAndUp},
           {key: CompactType.CompactUpAndLeft, value: CompactType.CompactUpAndLeft},
           {key: CompactType.CompactUpAndRight, value: CompactType.CompactUpAndRight},
-        ]
+        ],
+        access: ['admin', 'user']
       },
       {
         paramName: 'displayGrid',
@@ -307,7 +337,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
           {key: DisplayGrid.OnDragAndResize, value: DisplayGrid.OnDragAndResize},
           {key: DisplayGrid.Always, value: DisplayGrid.Always},
           {key: DisplayGrid.None, value: DisplayGrid.None},
-        ]
+        ],
+        access: ['admin']
       }
     ]
   },
@@ -320,7 +351,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Margin',
         additionalText: 'margin between grid items',
         value: 10,
-        default: 10
+        default: 10,
+        access: ['admin', 'user']
       },
       {
         paramName: 'outerMargin',
@@ -328,7 +360,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Outer margin',
         additionalText: 'if margins will apply to the sides of the container',
         value: true,
-        default: true
+        default: true,
+        access: ['admin', 'user']
       },
       {
         paramName: 'outerMarginTop',
@@ -336,7 +369,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Grid margin top',
         additionalText: 'override top outer margin for grid',
         value: null,
-        default: null
+        default: null,
+        access: ['admin']
       },
       {
         paramName: 'outerMarginRight',
@@ -344,7 +378,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Grid margin right',
         additionalText: 'override right outer margin for grid',
         value: null,
-        default: null
+        default: null,
+        access: ['admin']
       },
       {
         paramName: 'outerMarginBottom',
@@ -352,7 +387,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Grid margin bottom',
         additionalText: 'override bottom outer margin for grid',
         value: null,
-        default: null
+        default: null,
+        access: ['admin']
       },
       {
         paramName: 'outerMarginLeft',
@@ -360,7 +396,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Grid margin left',
         additionalText: 'override left outer margin for grid',
         value: null,
-        default: null
+        default: null,
+        access: ['admin']
       }
     ]
   },
@@ -372,16 +409,18 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         controlType: 'Checkbox',
         labelText: 'Disable horizontal scroll',
         additionalText: 'enable/disable auto horizontal scrolling when on edge of dashboard-grid',
-        value: 0,
-        default: 0
+        value: false,
+        default: false,
+        access: ['admin', 'user']
       },
       {
         paramName: 'disableScrollVertical',
         controlType: 'Checkbox',
         labelText: 'Disable vertical scroll',
         additionalText: 'enable/disable auto vertical scrolling when on edge of dashboard-grid',
-        value: 0,
-        default: 0
+        value: false,
+        default: false,
+        access: ['admin', 'user']
       }
     ]
   },
@@ -394,7 +433,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Push items',
         additionalText: 'push items when resizing and dragging',
         value: true,
-        default: true
+        default: true,
+        access: ['admin']
       },
       {
         paramName: 'disablePushOnDrag',
@@ -402,7 +442,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Disable Push On Drag',
         additionalText: 'disable push on drag',
         value: false,
-        default: false
+        default: false,
+        access: ['admin']
       },
       {
         paramName: 'disablePushOnResize',
@@ -410,7 +451,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Disable Push On Resize',
         additionalText: 'disable push on resize',
         value: false,
-        default: false
+        default: false,
+        access: ['admin']
       },
       {
         paramName: 'pushResizeItems',
@@ -418,7 +460,8 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         labelText: 'Push Resize Items',
         additionalText: 'on resize of item will shrink adjacent items',
         value: true,
-        default: true
+        default: true,
+        access: ['admin']
       }
     ]
   }
