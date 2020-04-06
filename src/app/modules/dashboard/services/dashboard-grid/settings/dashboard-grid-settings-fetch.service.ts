@@ -18,19 +18,19 @@ export class DashboardGridSettingsFetchService {
     this._settingsSubject$ = new BehaviorSubject<GridParamGroupInterface[]>([]);
     this.settings$ = this._initSettings$();
 
-    this._updateSettingsSubject();
+    this.updateSettingsSubject(this.getSettingsData());
   }
 
   /** Получить текущее значение из стрима с настройками */
-  get _settingsValue(): GridParamGroupInterface[] {
+  get settingsValue(): GridParamGroupInterface[] {
     return merge(this._settingsSubject$.value) as GridParamGroupInterface[];
   }
 
-  private _updateSettingsSubject() {
-    this._settingsSubject$.next(this._getSettingsData());
+  updateSettingsSubject(settings: GridParamGroupInterface[]) {
+    this._settingsSubject$.next(settings);
   }
 
-  private _getSettingsData() {
+  getSettingsData() {
     return GRID_SETTINGS;
   }
 
