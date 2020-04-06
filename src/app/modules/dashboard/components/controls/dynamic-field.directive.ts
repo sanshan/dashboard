@@ -26,20 +26,16 @@ export class DynamicFieldDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    const role = 'user';
+    /** Получаю название компонента по полю controlType(из объекта с входящими параметрами) из конфига) */
+    const component = GRID_CONTROL_COMPONENTS[this.param.controlType];
 
-    if (this.param.access.indexOf(role) >= 0) {
-      /** Получаю название компонента по полю controlType(из объекта с входящими параметрами) из конфига) */
-      const component = GRID_CONTROL_COMPONENTS[this.param.controlType];
+    /** Создаю компонент */
+    const factory = this.resolver.resolveComponentFactory<ControlInterface>(component);
+    this.component = this.container.createComponent<ControlInterface>(factory);
 
-      /** Создаю компонент */
-      const factory = this.resolver.resolveComponentFactory<ControlInterface>(component);
-      this.component = this.container.createComponent<ControlInterface>(factory);
-
-      /** передаю параметры в компонент */
-      this.component.instance.param = this.param;
-      this.component.instance.form = this.form;
-    }
+    /** передаю параметры в компонент */
+    this.component.instance.param = this.param;
+    this.component.instance.form = this.form;
   }
 
 }

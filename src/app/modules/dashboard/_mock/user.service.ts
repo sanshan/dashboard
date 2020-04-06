@@ -19,4 +19,9 @@ export class UserService {
   updateUserSubject(role: Role) {
     this._userSubject$.next(role);
   }
+
+  get user() {
+    return this._userSubject$.value;
+  }
+
 }

@@ -1,5 +1,14 @@
 <div class="dashboard-grid-settings">
-  <app-user-switch></app-user-switch>
+
+  <mat-button-toggle-group>
+    <mat-button-toggle value="center" aria-label="User" (click)="switchUser('user')">
+      User
+    </mat-button-toggle>
+    <mat-button-toggle value="center" aria-label="Admin" (click)="switchUser('admin')">
+      Admin
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+
   <form
     class="dynamic-form"
     [formGroup]="form">
@@ -10,12 +19,12 @@
       <h3 class="dashboard-grid-settings-group-title">{{ group.title | translate }}</h3>
 
       <!--    Вывожу компоненты с контролами динамически, основываясь на параметре controlType объекта param (используется декоратор appDynamicField)-->
-      <ng-container
+      <ng-template
         *ngFor="let param of group.controls"
         appDynamicField
         [param]="param"
         [form]="getGroup(group.title)">
-      </ng-container>
+      </ng-template>
 
     </div>
   </form>

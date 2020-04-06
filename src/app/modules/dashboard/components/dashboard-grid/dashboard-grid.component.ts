@@ -33,7 +33,7 @@ export class DashboardGridComponent implements OnInit, OnChanges {
     /** Подписываемся на обновление опций грида и реагируем на изменения в них */
     this.options$.subscribe(this.optionsChanged);
 
-    /** Подписываемся добавление контента и реагируем на это */
+    /** Подписываемся на добавление контента и реагируем на это */
     this.components$.subscribe((_) => {
       this._change.markForCheck();
     });
@@ -86,7 +86,7 @@ export class DashboardGridComponent implements OnInit, OnChanges {
 
       options.api.optionsChanged();
     }
-  };
+  }
 
   private _getOptions$(): Observable<GridsterConfig> {
     return this._dgo.options$;
