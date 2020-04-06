@@ -202,7 +202,7 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
       {
         paramName: 'enableOccupiedCellDrop',
         controlType: 'Checkbox',
-        labelText: ' Enable drop on occupied cell',
+        labelText: 'Enable drop on occupied cell',
         additionalText: 'enable occupied cell drop events',
         value: true,
         default: true,
@@ -220,7 +220,7 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
       {
         paramName: 'emptyCellDragMaxCols',
         controlType: 'InputNumber',
-        labelText: 'Drag max colls',
+        labelText: 'Drag max cols',
         additionalText: 'limit empty cell drag max rows',
         value: 50,
         default: 50,
