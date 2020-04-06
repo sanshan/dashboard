@@ -72,7 +72,7 @@ export class DashboardGridSettingsFormService {
 
   /** Получить данные о параметрах из сервиса */
   private _receiveSettings(): GridParamGroupInterface[] {
-    return this._dgsf._settingsValue;
+    return this._dgsf.settingsValue;
   }
 
 }
