@@ -7,6 +7,9 @@
     <mat-button-toggle value="center" aria-label="Admin" (click)="switchUser('admin')">
       Admin
     </mat-button-toggle>
+    <mat-button-toggle value="center" aria-label="Back" (click)="back()">
+      Назад
+    </mat-button-toggle>
   </mat-button-toggle-group>
 
   <form
@@ -16,7 +19,7 @@
     <h2 class="dashboard-grid-settings-title">{{ 'Parameters' | translate }}</h2>
 
     <div class="dashboard-grid-settings-group" *ngFor="let group of params$ | async" [formGroupName]="group.title">
-      <h3 class="dashboard-grid-settings-group-title">{{ group.title | translate }}</h3>
+      <h3 *ngIf="controlsAvailable(group)" class="dashboard-grid-settings-group-title">{{ group.title | translate }}</h3>
 
       <!--    Вывожу компоненты с контролами динамически, основываясь на параметре controlType объекта param (используется декоратор appDynamicField)-->
       <ng-template
