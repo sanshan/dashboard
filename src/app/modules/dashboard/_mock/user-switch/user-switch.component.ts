@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Role, UserService} from '../user.service';
 
 @Component({
   selector: 'app-user-switch',
   templateUrl: './user-switch.component.html',
-  styleUrls: ['./user-switch.component.scss']
+  styleUrls: ['./user-switch.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserSwitchComponent {
 
