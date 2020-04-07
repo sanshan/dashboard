@@ -123,14 +123,23 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         access: ['admin']
       },
       {
-        paramName: 'draggable.delayStart',
-        controlType: 'InputNumber',
-        labelText: 'Delay start ms',
-        additionalText: 'milliseconds to delay the start of drag, useful for touch interaction',
-        value: 0,
-        default: 0,
+        paramName: 'resizable.enabled',
+        controlType: 'Checkbox',
+        labelText: 'Resizable items',
+        additionalText: 'enable/disable resizable items',
+        value: true,
+        default: true,
         access: ['admin']
       },
+      // {
+      //   paramName: 'draggable.delayStart',
+      //   controlType: 'InputNumber',
+      //   labelText: 'Delay start ms',
+      //   additionalText: 'milliseconds to delay the start of drag, useful for touch interaction',
+      //   value: 0,
+      //   default: 0,
+      //   access: ['admin']
+      // },
       {
         paramName: 'draggable.dropOverItems',
         controlType: 'Checkbox',
@@ -152,26 +161,58 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
     ]
   },
   {
-    title: 'Resize&Add',
+    title: 'Push',
     controls: [
       {
-        paramName: 'resizable.enabled',
+        paramName: 'pushItems',
         controlType: 'Checkbox',
-        labelText: 'Resizable items',
-        additionalText: 'enable/disable resizable items',
+        labelText: 'Push items',
+        additionalText: 'push items when resizing and dragging',
         value: true,
         default: true,
         access: ['admin']
       },
       {
-        paramName: 'resizable.delayStart',
-        controlType: 'InputNumber',
-        labelText: 'Delay start ms',
-        additionalText: 'milliseconds to delay the start of resize, useful for touch interaction',
-        value: 0,
-        default: 0,
+        paramName: 'disablePushOnDrag',
+        controlType: 'Checkbox',
+        labelText: 'Disable Push On Drag',
+        additionalText: 'disable push on drag',
+        value: false,
+        default: false,
         access: ['admin']
       },
+      {
+        paramName: 'disablePushOnResize',
+        controlType: 'Checkbox',
+        labelText: 'Disable Push On Resize',
+        additionalText: 'disable push on resize',
+        value: false,
+        default: false,
+        access: ['admin']
+      },
+      {
+        paramName: 'pushResizeItems',
+        controlType: 'Checkbox',
+        labelText: 'Push Resize Items',
+        additionalText: 'on resize of item will shrink adjacent items',
+        value: true,
+        default: true,
+        access: ['admin']
+      }
+    ]
+  },
+  {
+    title: 'Resize&Add',
+    controls: [
+      // {
+      //   paramName: 'resizable.delayStart',
+      //   controlType: 'InputNumber',
+      //   labelText: 'Delay start ms',
+      //   additionalText: 'milliseconds to delay the start of resize, useful for touch interaction',
+      //   value: 0,
+      //   default: 0,
+      //   access: ['admin']
+      // },
       {
         paramName: 'enableEmptyCellClick',
         controlType: 'Checkbox',
@@ -421,47 +462,6 @@ export const GRID_SETTINGS: GridParamGroupInterface[] = [
         value: false,
         default: false,
         access: ['admin', 'user']
-      }
-    ]
-  },
-  {
-    title: 'Push',
-    controls: [
-      {
-        paramName: 'pushItems',
-        controlType: 'Checkbox',
-        labelText: 'Push items',
-        additionalText: 'push items when resizing and dragging',
-        value: true,
-        default: true,
-        access: ['admin']
-      },
-      {
-        paramName: 'disablePushOnDrag',
-        controlType: 'Checkbox',
-        labelText: 'Disable Push On Drag',
-        additionalText: 'disable push on drag',
-        value: false,
-        default: false,
-        access: ['admin']
-      },
-      {
-        paramName: 'disablePushOnResize',
-        controlType: 'Checkbox',
-        labelText: 'Disable Push On Resize',
-        additionalText: 'disable push on resize',
-        value: false,
-        default: false,
-        access: ['admin']
-      },
-      {
-        paramName: 'pushResizeItems',
-        controlType: 'Checkbox',
-        labelText: 'Push Resize Items',
-        additionalText: 'on resize of item will shrink adjacent items',
-        value: true,
-        default: true,
-        access: ['admin']
       }
     ]
   }
