@@ -23,7 +23,8 @@ import {DashboardToolbarComponent} from './components/dashboard-toolbar/dashboar
 import {DashboardToolbarItemComponent} from './components/dashboard-toolbar/dashboard-toolbar-item/dashboard-toolbar-item.component';
 import {DynamicDashboardItemDirective} from './_mock/components/dynamic-dashboard-item.directive';
 import {UserSwitchComponent} from './_mock/user-switch/user-switch.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { DashboardItemComponent } from './components/dashboard-item/dashboard-item.component';
+import {PlottingModule} from '../plotting/plotting.module';
 
 
 @NgModule({
@@ -42,20 +43,21 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     DashboardToolbarComponent,
     DashboardToolbarItemComponent,
     DynamicDashboardItemDirective,
-    UserSwitchComponent
+    UserSwitchComponent,
+    DashboardItemComponent
   ],
   exports: [
     DashboardComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    TranslateModule,
-    GridsterModule,
-    ReactiveFormsModule,
-    DashboardRoutingModule,
-    MatButtonToggleModule,
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        TranslateModule,
+        GridsterModule,
+        PlottingModule,
+        ReactiveFormsModule,
+        DashboardRoutingModule
+    ]
 })
 export class DashboardModule {
 }

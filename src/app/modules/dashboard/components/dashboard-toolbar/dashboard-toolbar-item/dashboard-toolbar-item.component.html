@@ -1,7 +1,11 @@
-<div
-  class="dashboard-toolbar-item draggable"
-  draggable="true"
->
-  <div>ID: {{ item?._id }}</div>
-  <div>TYPE: {{ item?.type }}</div>
-</div>
+<mat-card class="dashboard-toolbar-item" draggable="true">
+  <div class="wrapper">
+    <div class="dashboard-toolbar-item-image">ID: {{ item?._id }}</div>
+    <div class="dashboard-toolbar-item-content">
+      <div class="dashboard-toolbar-item-content-title">
+        Название графика
+      </div>
+      TYPE: {{ item?.type }}
+    </div>
+  </div>
+</mat-card>

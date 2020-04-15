@@ -1,47 +1,50 @@
-<mat-sidenav-container class="sidenav-container">
+<div id="dashboard">
 
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-               position="end"
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="(isHandset$ | async) === false">
+  <mat-sidenav-container class="sidenav-container">
 
-    <!--      Dashboard dashboard-grid-settings start-->
-    <app-dashboard-grid-settings></app-dashboard-grid-settings>
-    <!--      Dashboard dashboard-grid-settings end-->
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+                 position="end"
+                 [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+                 [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                 [opened]="(isHandset$ | async) === false">
 
-  </mat-sidenav>
+      <!--      Dashboard dashboard-grid-settings start-->
+      <app-dashboard-grid-settings></app-dashboard-grid-settings>
+      <!--      Dashboard dashboard-grid-settings end-->
 
-  <mat-sidenav-content>
+    </mat-sidenav>
 
-    <!--    Dashboard content start-->
-    <div class="dashboard-content">
+    <mat-sidenav-content>
 
-      <!--      Dashboard top menu start-->
-      <mat-toolbar color="primary">
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()"
-          *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
+      <!--    Dashboard content start-->
+      <div class="dashboard-content">
 
-        Дизайнер панелей
+        <!--      Dashboard toolbar start-->
+        <app-dashboard-toolbar>
+          <button
+            style="margin-right: 10px;"
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="isHandset$ | async">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+        </app-dashboard-toolbar>
+        <!--      Dashboard toolbar end-->
 
-      </mat-toolbar>
-      <!--      Dashboard top menu end-->
+        <!--      Dashboard dashboard-grid start-->
+        <app-dashboard-grid [items]="(dashboard$ | async).items"></app-dashboard-grid>
+        <!--      Dashboard dashboard-grid end-->
 
-      <!--      Dashboard dashboard-grid start-->
-      <app-dashboard-grid [items]="(dashboard$ | async).items"></app-dashboard-grid>
-      <!--      Dashboard dashboard-grid end-->
+      </div>
+      <!--    Dashboard content end-->
 
-    </div>
-    <!--    Dashboard content end-->
+    </mat-sidenav-content>
 
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-sidenav-container>
+
+</div>
 
 
 

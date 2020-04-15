@@ -1,0 +1,116 @@
+$palette: (
+  50: #E3F2FD,
+  100: #4d859b,
+  200: #90CAF9,
+  300: #64B5F6,
+  400: #42A5F5,
+  500: #1D90B7,
+  600: #1E88E5,
+  700: #002f42,
+  800: #1565C0,
+  900: #0D47A1,
+  A100: #82B1FF,
+  A200: #448AFF,
+  A400: #2979FF,
+  A700: #2962FF,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$primary: mat-palette($palette, 500, 100, 700);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
+$theme: mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
+
+$background: white;
+$foreground: rgba(black, 0.87);
+$icon-color: rgba(black, 0.54);
+$hover-color: rgba(black, 0.04);
+$primary-contrast: white;
+
+.mat-card, .mat-expansion-panel {
+  border-color: mat-color($primary);
+}
+.is-sticky {
+  color: $primary-contrast;
+  background-color: mat-color($primary);
+}
+.app-drag-placeholder {
+  background-color: rgba(mat-color($accent), 0.2);
+  border-color: mat-color($accent);
+}
+div.app-org-node-header {
+  color: $primary-contrast;
+  background-color: mat-color($primary);
+}
+div.app-org-node-content {
+  border-color: mat-color($primary);
+}
+
+table.pvtTable thead tr th, table.pvtTable tbody tr th {
+  color: $foreground;
+  background-color: rgba(mat-color($primary), 0.2);
+}
+table.pvtTable tbody tr td {
+  color: $foreground;
+  background-color: $background;
+}
+
+table.pvtTable tbody tr:hover {
+  border-top : 2px solid mat-color($accent);
+  border-bottom : 2px solid mat-color($accent);
+}
+
+mat-accordion {
+  mat-expansion-panel {
+    mat-expansion-panel-header {
+      span.mat-content {
+        opacity: 1;
+        font-weight: bolder;
+      }
+    }
+    mat-nav-list[dense] {
+      a.mat-list-item {
+        opacity: 1;
+        font-size: .9em;
+        line-height: 16px;
+        border-left: 4px solid rgba(0,0,0,0.2);
+      }
+      a.mat-list-item.app-active-link {
+        opacity: 1;
+        font-weight: bold;
+        border-left: 4px solid mat-color($primary);
+      }
+      mat-list-item.app-active {
+        color: mat-color($primary);
+      }
+    }
+  }
+}
+
+div.mat-tab-label.mat-tab-label-active {
+  color: mat-color($primary);
+}
+
+tr.app-table-row:hover, tr.app-table-row:active {
+  background-color: rgba(mat-color($accent), 0.1);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: mat-color($accent);
+  outline: 1px solid slategrey;
+}

@@ -1,10 +1,16 @@
 <div class="dashboard-toolbar">
 
-  <app-dashboard-toolbar-item
-    *ngFor="let item of items$ | async"
-    [item]="item"
-    (dragend)="dropItem(item)"
-  >
-  </app-dashboard-toolbar-item>
+  <div class="dashboard-toolbar-buttons">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="dashboard-toolbar-items">
+    <app-dashboard-toolbar-item
+      *ngFor="let item of items$ | async"
+      [item]="item"
+      (dragend)="dropItem(item)"
+    >
+    </app-dashboard-toolbar-item>
+  </div>
 
 </div>

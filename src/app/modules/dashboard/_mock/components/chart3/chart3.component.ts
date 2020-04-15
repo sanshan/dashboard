@@ -11,6 +11,8 @@ export class Chart3Component implements OnInit, ChartComponentInterface {
 
   @Input() item: ChartInterface;
 
+  public title = 'TEST text TEST text TEST text TEST text TEST text TEST text TEST text TEST text ';
+
   constructor() {
   }
 

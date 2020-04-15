@@ -1,5 +1,18 @@
-.dashboard-content {
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
+#dashboard .mat-drawer-container {
+  background-color: #fff!important;
 }
+
+#dashboard{
+
+  box-sizing: border-box;
+
+  .dashboard-content {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+  }
+}
+
+
+
+

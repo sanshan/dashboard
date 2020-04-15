@@ -9,6 +9,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatRippleModule} from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -22,7 +26,11 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatRippleModule,
+    MatMenuModule
   ],
   exports: [
     MatButtonModule,
@@ -33,7 +41,11 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatRippleModule,
+    MatMenuModule
   ]
 })
 export class MaterialDesignModule {

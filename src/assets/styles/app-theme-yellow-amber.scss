@@ -1,0 +1,83 @@
+.mat-yellow-amber {
+  color: $light-primary-text;
+  $primary: mat-palette($mat-yellow);
+  $accent: mat-palette($mat-amber, A400, A100, A700);
+  $warn: mat-palette($mat-red);
+  $theme: mat-dark-theme($primary, $accent, $warn);
+
+  @include angular-material-theme($theme);
+
+  $background: mat-color($mat-grey, 800);
+  $foreground: white;
+  $icon-color: white;
+  $primary-contrast: black;
+
+  .mat-card, .mat-expansion-panel {
+    border-color: mat-color($primary);
+  }
+  .is-sticky {
+    color: $primary-contrast;
+    background-color: mat-color($primary);
+  }
+  .app-drag-placeholder {
+    background-color: rgba(mat-color($accent), 0.2);
+    border-color: mat-color($accent);
+  }
+  div.app-org-node-header {
+    color: $primary-contrast;
+    background-color: mat-color($primary);
+  }
+
+  div.app-org-node-content {
+    border-color: mat-color($primary);
+  }
+
+  table.pvtTable thead tr th, table.pvtTable tbody tr th {
+    color: $foreground;
+    background-color: rgba(mat-color($primary), 0.2);
+  }
+  table.pvtTable tbody tr td {
+    color: $foreground;
+    background-color: $background;
+  }
+  table.pvtTable tbody tr:hover {
+    border-top : 2px solid mat-color($accent);
+    border-bottom : 2px solid mat-color($accent);
+  }
+
+  mat-nav-list[dense] {
+    a.mat-list-item {
+      opacity: .54;
+      font-size: .9em;
+      line-height: 16px;
+      border-left: 2px solid rgba(0,0,0,0.4);
+    }
+    a.mat-list-item.app-active-link {
+      opacity: 1;
+      border-left: 2px solid mat-color($primary);
+    }
+    a.mat-list-item.app-active-link-extmenu {
+      opacity: 1;
+      color: mat-color($primary);
+    }
+    a.mat-list-item.app-active-link-extmenu > div::after {
+      border-style: solid;
+      border-width: 0 2px 2px 0;
+      content: '';
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(-45deg);
+      vertical-align: middle;
+    }
+    mat-list-item.app-active {
+      color: mat-color($primary);
+    }
+  }
+  tr.app-table-row:hover,tr.app-table-row:active {
+    background-color: rgba(mat-color($accent), 0.1);
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: mat-color($accent);
+    outline: 1px solid slategrey;
+  }
+}

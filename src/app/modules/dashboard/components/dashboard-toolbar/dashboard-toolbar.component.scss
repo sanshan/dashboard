@@ -1,4 +1,13 @@
+:host {
+  display: flex;
+}
+
 .dashboard-toolbar {
   display: flex;
   flex-direction: row;
+
+  .dashboard-toolbar-items {
+    display: flex;
+    flex-direction: row;
+  }
 }
