@@ -40,5 +40,10 @@ export const AVAILABLE_CHARTS: ChartInterface[] = [
     _id: 4,
     type: 'advanced',
     comp: 'Chart4Component'
+  },
+  {
+    _id: 5,
+    type: 'advanced',
+    comp: 'UniversalPlottingBarComponent'
   }
 ];

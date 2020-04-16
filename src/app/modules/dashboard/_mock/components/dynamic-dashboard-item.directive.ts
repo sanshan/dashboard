@@ -2,10 +2,12 @@ import {ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, Vie
 import {Chart2Component} from './chart2/chart2.component';
 import {Chart4Component} from './chart4/chart4.component';
 import {ID} from '../../../_shared/interfaces/interfaces';
+import {UniversalPlottingBarComponent} from './universal-plotting-bar/universal-plotting-bar.component';
 
 const components = {
   Chart2Component,
   Chart4Component,
+  UniversalPlottingBarComponent
 };
 
 @Directive({

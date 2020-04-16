@@ -1,7 +1,9 @@
 <div class="dashboard-item-toolbar">
 
-  <app-dashboard-item-toolbar-menu></app-dashboard-item-toolbar-menu>
+  <app-dashboard-item-toolbar-menu
+    [item]="item"
+  ></app-dashboard-item-toolbar-menu>
 
-  <h3 class="dashboard-item-toolbar-title">{{ title }}</h3>
+  <h3 class="dashboard-item-toolbar-title">{{ item?.title }}</h3>
 
 </div>

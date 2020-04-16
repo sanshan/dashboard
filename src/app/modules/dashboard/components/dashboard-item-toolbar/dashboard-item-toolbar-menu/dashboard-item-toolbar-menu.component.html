@@ -10,9 +10,9 @@
   </button>
 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
+    <button (click)="deleteContainer()" mat-menu-item>
+      <mat-icon>delete</mat-icon>
+      <span>Удалить</span>
     </button>
     <button mat-menu-item disabled>
       <mat-icon>voicemail</mat-icon>

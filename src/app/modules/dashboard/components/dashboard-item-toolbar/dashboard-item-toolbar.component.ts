@@ -1,4 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DashboardItem} from '../../models/dashboard/dashboard.interface';
 
 @Component({
   selector: 'app-dashboard-item-toolbar',
@@ -8,6 +9,6 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 })
 export class DashboardItemToolbarComponent {
 
-  @Input() title: string;
+  @Input() item: DashboardItem<any>;
 
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DashboardItem} from '../../../models/dashboard/dashboard.interface';
+import {DashboardGridService} from '../../../services/dashboard-grid/dashboard-grid.service';
 
 @Component({
   selector: 'app-dashboard-item-toolbar-menu',
@@ -8,9 +10,18 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class DashboardItemToolbarMenuComponent implements OnInit {
 
-  constructor() { }
+  @Input() item: DashboardItem<any>;
+
+  constructor(
+    private _dg: DashboardGridService
+  ) {
+  }
 
   ngOnInit(): void {
+  }
+
+  deleteContainer() {
+    this._dg.removeItem(this.item);
   }
 
 }

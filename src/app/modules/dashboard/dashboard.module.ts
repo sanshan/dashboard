@@ -18,6 +18,8 @@ import {GridCheckboxControlComponent} from './components/controls/grid-checkbox-
 import {DashboardRoutingModule} from './routing/dashboard-routing.module';
 import {Chart2Component} from './_mock/components/chart2/chart2.component';
 import {Chart4Component} from './_mock/components/chart4/chart4.component';
+import {UniversalPlottingBarComponent} from './_mock/components/universal-plotting-bar/universal-plotting-bar.component';
+
 import {DashboardToolbarComponent} from './components/dashboard-toolbar/dashboard-toolbar.component';
 import {DashboardToolbarItemComponent} from './components/dashboard-toolbar/dashboard-toolbar-item/dashboard-toolbar-item.component';
 import {DynamicDashboardItemDirective} from './_mock/components/dynamic-dashboard-item.directive';
@@ -40,6 +42,7 @@ import {DashboardItemToolbarMenuComponent} from './components/dashboard-item-too
     GridCheckboxControlComponent,
     Chart2Component,
     Chart4Component,
+    UniversalPlottingBarComponent,
     DashboardToolbarComponent,
     DashboardToolbarItemComponent,
     DynamicDashboardItemDirective,
