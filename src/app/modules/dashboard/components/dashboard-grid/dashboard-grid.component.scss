@@ -5,6 +5,10 @@
   display: flex;
 }
 
+::ng-deep .gridster-preview{
+  background: transparent!important;
+}
+
 gridster {
   background-color: #fff!important;
 }
