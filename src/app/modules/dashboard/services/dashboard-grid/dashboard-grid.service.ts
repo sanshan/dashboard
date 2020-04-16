@@ -33,6 +33,10 @@ export class DashboardGridService {
     this.components$ = this._initComponents$();
   }
 
+  get dropIdValue() {
+    return this._dropIdSubject.value;
+  }
+
   /**
    * Обновить данные в стриме
    *
@@ -74,17 +78,29 @@ export class DashboardGridService {
    */
   dropItem(chart: ChartInterface): void {
     let components = this._componentsValue;
-    const comp: ComponentInterface = components.find(c => c.containerId.toString() === this._dropIdSubject.value.toString());
-    if (!comp) {
-      const componentItem: ComponentInterface = {
-        id: this._dropIdSubject.value,
-        containerId: this._dropIdSubject.value.toString(),
-        componentRef: chart.comp
-      };
+    const containerId = this._dropIdSubject.value;
 
-      components = Object.assign([], components, {[components.length]: componentItem});
-      this._componentsSubject.next(components);
+    console.log('Последний контейнер над которым держали чарт был с ИД: ', containerId);
+
+    if (containerId >= 0) {
+
+      console.log('Добавляю чарт в контейнер');
+
+      const comp: ComponentInterface = components.find(c => c.containerId.toString() === containerId.toString());
+      if (!comp) {
+        const componentItem: ComponentInterface = {
+          id: this._dropIdSubject.value,
+          containerId: containerId.toString(),
+          componentRef: chart.comp
+        };
+
+        components = Object.assign([], components, {[components.length]: componentItem});
+        this._componentsSubject.next(components);
+        this._dropIdSubject.next(-1);
+        console.log('Теперь коллекция с чартами такая: ', components);
+      }
     }
+
   }
 
   /**
@@ -93,7 +109,9 @@ export class DashboardGridService {
    * @param id ID
    */
   setDropId(id: ID): void {
+    console.log('Событие: ', id);
     this._dropIdSubject.next(id);
+    console.log('Теперь наблюдаемый ИД компонента такой:  ', this._dropIdSubject.value);
   }
 
   /**

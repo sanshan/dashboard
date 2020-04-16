@@ -1,5 +1,5 @@
 <div class="dashboard-grid-item"
-    (dragenter)="setDropId(item._id)"
+    (dragenter)="setDropId($event, item._id)"
   >
     <div class="dashboard-grid-item-toolbar__wrapper">
       <button mat-icon-button class="drag-handler">

@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef} from '@angular/core';
 import {DashboardItem} from '../../models/dashboard/dashboard.interface';
 import {ID} from '../../../_shared/interfaces/interfaces';
 import {DashboardGridService} from '../../services/dashboard-grid/dashboard-grid.service';
@@ -13,26 +13,29 @@ export class DashboardItemComponent implements OnInit {
 
   @Input() item: DashboardItem<any>;
 
-  chartItem = {
-    _id: 4,
-    type: 'advanced',
-    comp: 'Chart4Component'
-  };
-
   constructor(
     private _dg: DashboardGridService,
+    private _cdr: ChangeDetectorRef
   ) {
   }
 
   ngOnInit(): void {
+    this._dg.components$.subscribe((_) => {
+      console.log('Список компонентов обновился');
+      if (this._dg.dropIdValue.toString() === this.item._id.toString()) {
+        console.log('Перерисовываю контейнер: ', this.item._id);
+        this._cdr.detectChanges();
+      }
+    });
   }
 
   /**
-   * Сохранить перетаскиваемые компонент в локальную переменную
+   * Обновить ID контейнера над которым пронесли чарт
    *
+   * @param $event Event
    * @param id ID
    */
-  setDropId(id: ID): void {
+  setDropId($event: Event, id: ID): void {
     this._dg.setDropId(id);
   }
 
