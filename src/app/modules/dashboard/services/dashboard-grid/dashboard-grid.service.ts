@@ -84,10 +84,11 @@ export class DashboardGridService {
 
     if (containerId >= 0) {
 
-      console.log('Добавляю чарт в контейнер');
-
       const comp: ComponentInterface = components.find(c => c.containerId.toString() === containerId.toString());
       if (!comp) {
+
+        console.log('Добавляю чарт в контейнер');
+
         const componentItem: ComponentInterface = {
           id: this._dropIdSubject.value,
           containerId: containerId.toString(),

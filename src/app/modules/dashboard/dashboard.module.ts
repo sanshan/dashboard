@@ -25,7 +25,6 @@ import {DashboardToolbarItemComponent} from './components/dashboard-toolbar/dash
 import {DynamicDashboardItemDirective} from './_mock/components/dynamic-dashboard-item.directive';
 import {UserSwitchComponent} from './_mock/user-switch/user-switch.component';
 import {DashboardItemComponent} from './components/dashboard-item/dashboard-item.component';
-import {PlottingModule} from '../plotting/plotting.module';
 import {DashboardItemToolbarComponent} from './components/dashboard-item-toolbar/dashboard-item-toolbar.component';
 import {DashboardItemToolbarMenuComponent} from './components/dashboard-item-toolbar/dashboard-item-toolbar-menu/dashboard-item-toolbar-menu.component';
 
@@ -59,7 +58,6 @@ import {DashboardItemToolbarMenuComponent} from './components/dashboard-item-too
     SharedModule,
     TranslateModule,
     GridsterModule,
-    PlottingModule,
     ReactiveFormsModule,
     DashboardRoutingModule
   ]
