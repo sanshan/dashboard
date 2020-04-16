@@ -68,21 +68,23 @@ export class DashboardGridService {
 
   /**
    * Добавляем chart в коллекцию чартов
+   * Один контейнер - один чарт
    *
    * @param chart ChartInterface
    */
   dropItem(chart: ChartInterface): void {
     let components = this._componentsValue;
-    const comp: ComponentInterface = components.find(c => c.id.toString() === this._dropIdSubject.value.toString());
+    const comp: ComponentInterface = components.find(c => c.containerId.toString() === this._dropIdSubject.value.toString());
+    if (!comp) {
+      const componentItem: ComponentInterface = {
+        id: this._dropIdSubject.value,
+        containerId: this._dropIdSubject.value.toString(),
+        componentRef: chart.comp
+      };
 
-    const updateIdx: number = comp ? components.indexOf(comp) : components.length;
-    const componentItem: ComponentInterface = {
-      id: this._dropIdSubject.value,
-      componentRef: chart.comp
-    };
-    components = Object.assign([], components, {[updateIdx]: componentItem});
-
-    this._componentsSubject.next(components);
+      components = Object.assign([], components, {[components.length]: componentItem});
+      this._componentsSubject.next(components);
+    }
   }
 
   /**

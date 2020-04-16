@@ -31,4 +31,5 @@ export interface DashboardServiceInterface {
 export interface ComponentInterface {
   id: ID;
   componentRef: string;
+  containerId: ID;
 }
