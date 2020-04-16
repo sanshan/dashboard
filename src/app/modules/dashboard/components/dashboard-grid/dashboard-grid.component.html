@@ -1,18 +1,8 @@
   <gridster [options]="(options$ | async)">
-    <div class="dashboard-grid-item">
-      <gridster-item
-        *ngFor="let item of items$ | async"
-        [item]="item"
-        (dragenter)="setDropId($event, item._id)"
-      >
-        <div class="dashboard-grid-item-holder">
-          <ng-template
-            appDynamicDashboardItem
-            [componentRef]="getComponentRef(item._id)"
-          >
-          </ng-template>
-        </div>
-      </gridster-item>
-    </div>
+    <app-dashboard-item
+      *ngFor="let item of items$ | async"
+      [item]="item"
+    >
+    </app-dashboard-item>
   </gridster>
 

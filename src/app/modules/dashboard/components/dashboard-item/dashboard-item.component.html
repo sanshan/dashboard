@@ -1,1 +1,14 @@
-<ng-content></ng-content>
+<div class="dashboard-grid-item">
+  <gridster-item
+    [item]="item"
+    (dragenter)="setDropId($event, item._id)"
+  >
+    <div class="dashboard-grid-item-holder">
+      <ng-template
+        appDynamicDashboardItem
+        [componentRef]="getComponentRef(item._id)"
+      >
+      </ng-template>
+    </div>
+  </gridster-item>
+</div>

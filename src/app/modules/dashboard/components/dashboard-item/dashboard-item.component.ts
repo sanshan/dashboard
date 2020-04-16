@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DashboardItem} from '../../models/dashboard/dashboard.interface';
+import {ID} from '../../../_shared/interfaces/interfaces';
+import {DashboardGridService} from '../../services/dashboard-grid/dashboard-grid.service';
 
 @Component({
   selector: 'app-dashboard-item',
@@ -8,9 +11,33 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class DashboardItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() item: DashboardItem<any>;
+
+  constructor(
+    private _dg: DashboardGridService,
+  ) {
+  }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * Сохранить перетаскиваемые компонент в локальную переменную
+   *
+   * @param $event Event
+   * @param id ID
+   */
+  setDropId($event: Event, id: ID): void {
+    this._dg.setDropId(id);
+  }
+
+  /**
+   * Получить название добавляемого компонента
+   *
+   * @param id ID
+   */
+  getComponentRef(id: ID) {
+    return this._dg.getComponentRef(id);
   }
 
 }

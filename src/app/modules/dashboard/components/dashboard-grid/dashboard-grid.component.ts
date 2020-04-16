@@ -58,25 +58,6 @@ export class DashboardGridComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Сохранить перетаскиваемые компонент в локальную переменную
-   *
-   * @param $event Event
-   * @param id ID
-   */
-  setDropId($event: Event, id: ID): void {
-    this._dg.setDropId(id);
-  }
-
-  /**
-   * Получить название добавляемого компонента
-   *
-   * @param id ID
-   */
-  getComponentRef(id: ID) {
-    return this._dg.getComponentRef(id);
-  }
-
-  /**
    * Изменить настройки
    *
    * @param options Объект с настройками
