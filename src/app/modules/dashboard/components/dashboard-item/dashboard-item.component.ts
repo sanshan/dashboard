@@ -30,10 +30,9 @@ export class DashboardItemComponent implements OnInit {
   /**
    * Сохранить перетаскиваемые компонент в локальную переменную
    *
-   * @param $event Event
    * @param id ID
    */
-  setDropId($event: Event, id: ID): void {
+  setDropId(id: ID): void {
     this._dg.setDropId(id);
   }
 
