@@ -12,12 +12,12 @@
     </div>
 
     <div class="gridster-item-content">
-      <app-chart2 [chartItem]="chartItem" [id]="item._id"></app-chart2>
-<!--      <ng-template-->
-<!--        appDynamicDashboardItem-->
-<!--        [componentRef]="getComponentRef(item._id)"-->
-<!--      >-->
-<!--      </ng-template>-->
+      <ng-template
+        [id]="item._id"
+        [componentRef]="getComponentRef(item._id)"
+        appDynamicDashboardItem
+      >
+      </ng-template>
     </div>
 
 </div>

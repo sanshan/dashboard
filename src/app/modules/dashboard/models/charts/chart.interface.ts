@@ -8,5 +8,4 @@ export interface ChartInterface {
 
 export interface ChartComponentInterface {
   id: ID;
-  chartItem: ChartInterface;
 }

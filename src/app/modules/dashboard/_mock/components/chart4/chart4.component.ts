@@ -1,5 +1,5 @@
 import {Component, ChangeDetectionStrategy, Input, AfterViewInit, NgZone, OnDestroy} from '@angular/core';
-import {ChartComponentInterface, ChartInterface} from '../../../models/charts/chart.interface';
+import {ChartComponentInterface} from '../../../models/charts/chart.interface';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import {ID} from '../../../../_shared/interfaces/interfaces';
@@ -11,9 +11,7 @@ import {ID} from '../../../../_shared/interfaces/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Chart4Component implements AfterViewInit, OnDestroy, ChartComponentInterface {
-
   @Input() id: ID;
-  @Input() chartItem: ChartInterface;
   private chart: am4charts.XYChart;
 
   constructor(
