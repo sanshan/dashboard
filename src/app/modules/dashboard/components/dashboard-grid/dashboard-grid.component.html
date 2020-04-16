@@ -1,8 +1,11 @@
   <gridster [options]="(options$ | async)">
-    <app-dashboard-item
+    <gridster-item
       *ngFor="let item of items$ | async"
       [item]="item"
     >
-    </app-dashboard-item>
+
+      <app-dashboard-item [item]="item"></app-dashboard-item>
+
+    </gridster-item>
   </gridster>
 

@@ -13,6 +13,12 @@ export class DashboardItemComponent implements OnInit {
 
   @Input() item: DashboardItem<any>;
 
+  chartItem = {
+    _id: 4,
+    type: 'advanced',
+    comp: 'Chart4Component'
+  };
+
   constructor(
     private _dg: DashboardGridService,
   ) {

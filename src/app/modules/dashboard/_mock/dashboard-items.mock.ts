@@ -32,18 +32,13 @@ export const DASHBOARDS: Dashboard<any>[] = [
 
 export const AVAILABLE_CHARTS: ChartInterface[] = [
   {
-    _id: 1,
-    type: 'simple',
-    comp: 'Chart1Component'
-  },
-  {
     _id: 2,
     type: 'medium',
     comp: 'Chart2Component'
   },
   {
-    _id: 3,
+    _id: 4,
     type: 'advanced',
-    comp: 'Chart3Component'
+    comp: 'Chart4Component'
   }
 ];

@@ -1,14 +1,23 @@
-<div class="dashboard-grid-item">
-  <gridster-item
-    [item]="item"
+<div class="dashboard-grid-item"
     (dragenter)="setDropId($event, item._id)"
   >
-    <div class="dashboard-grid-item-holder">
-      <ng-template
-        appDynamicDashboardItem
-        [componentRef]="getComponentRef(item._id)"
-      >
-      </ng-template>
+    <div class="dashboard-grid-item-toolbar__wrapper">
+      <button mat-icon-button class="drag-handler">
+        <mat-icon>open_with</mat-icon>
+      </button>
+      <app-dashboard-item-toolbar
+        class="gridster-item-content"
+        [title]="'TEST ITEM TITLE'"
+      ></app-dashboard-item-toolbar>
     </div>
-  </gridster-item>
+
+    <div class="gridster-item-content">
+      <app-chart2 [chartItem]="chartItem" [id]="item._id"></app-chart2>
+<!--      <ng-template-->
+<!--        appDynamicDashboardItem-->
+<!--        [componentRef]="getComponentRef(item._id)"-->
+<!--      >-->
+<!--      </ng-template>-->
+    </div>
+
 </div>

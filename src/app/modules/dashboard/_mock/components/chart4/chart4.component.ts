@@ -2,15 +2,16 @@ import {Component, ChangeDetectionStrategy, Input, AfterViewInit, NgZone, OnDest
 import {ChartComponentInterface, ChartInterface} from '../../../models/charts/chart.interface';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
-import {ID} from 'src/app/modules/_shared/interfaces/interfaces';
+import {ID} from '../../../../_shared/interfaces/interfaces';
 
 @Component({
-  selector: 'app-chart2',
-  templateUrl: './chart2.component.html',
-  styleUrls: ['./chart2.component.scss'],
+  selector: 'app-chart4',
+  templateUrl: './chart4.component.html',
+  styleUrls: ['./chart4.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Chart2Component implements AfterViewInit, OnDestroy, ChartComponentInterface {
+export class Chart4Component implements AfterViewInit, OnDestroy, ChartComponentInterface {
+
   @Input() id: ID;
   @Input() chartItem: ChartInterface;
   private chart: am4charts.XYChart;
@@ -21,7 +22,7 @@ export class Chart2Component implements AfterViewInit, OnDestroy, ChartComponent
   }
 
   get chartId() {
-    return `Chart2_${this.id}`;
+    return `Chart4_${this.id}`;
   }
 
   ngAfterViewInit() {

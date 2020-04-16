@@ -16,15 +16,16 @@ import {GridNumberInputControlComponent} from './components/controls/grid-number
 import {GridSelectControlComponent} from './components/controls/grid-select-control/grid-select-control.component';
 import {GridCheckboxControlComponent} from './components/controls/grid-checkbox-control/grid-checkbox-control.component';
 import {DashboardRoutingModule} from './routing/dashboard-routing.module';
-import {Chart1Component} from './_mock/components/chart1/chart1.component';
 import {Chart2Component} from './_mock/components/chart2/chart2.component';
-import {Chart3Component} from './_mock/components/chart3/chart3.component';
+import {Chart4Component} from './_mock/components/chart4/chart4.component';
 import {DashboardToolbarComponent} from './components/dashboard-toolbar/dashboard-toolbar.component';
 import {DashboardToolbarItemComponent} from './components/dashboard-toolbar/dashboard-toolbar-item/dashboard-toolbar-item.component';
 import {DynamicDashboardItemDirective} from './_mock/components/dynamic-dashboard-item.directive';
 import {UserSwitchComponent} from './_mock/user-switch/user-switch.component';
-import { DashboardItemComponent } from './components/dashboard-item/dashboard-item.component';
+import {DashboardItemComponent} from './components/dashboard-item/dashboard-item.component';
 import {PlottingModule} from '../plotting/plotting.module';
+import {DashboardItemToolbarComponent} from './components/dashboard-item-toolbar/dashboard-item-toolbar.component';
+import {DashboardItemToolbarMenuComponent} from './components/dashboard-item-toolbar/dashboard-item-toolbar-menu/dashboard-item-toolbar-menu.component';
 
 
 @NgModule({
@@ -37,27 +38,28 @@ import {PlottingModule} from '../plotting/plotting.module';
     GridNumberInputControlComponent,
     GridSelectControlComponent,
     GridCheckboxControlComponent,
-    Chart1Component,
     Chart2Component,
-    Chart3Component,
+    Chart4Component,
     DashboardToolbarComponent,
     DashboardToolbarItemComponent,
     DynamicDashboardItemDirective,
     UserSwitchComponent,
-    DashboardItemComponent
+    DashboardItemComponent,
+    DashboardItemToolbarComponent,
+    DashboardItemToolbarMenuComponent
   ],
   exports: [
     DashboardComponent
   ],
-    imports: [
-        CommonModule,
-        SharedModule,
-        TranslateModule,
-        GridsterModule,
-        PlottingModule,
-        ReactiveFormsModule,
-        DashboardRoutingModule
-    ]
+  imports: [
+    CommonModule,
+    SharedModule,
+    TranslateModule,
+    GridsterModule,
+    PlottingModule,
+    ReactiveFormsModule,
+    DashboardRoutingModule
+  ]
 })
 export class DashboardModule {
 }
